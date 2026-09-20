@@ -1,0 +1,184 @@
+[2026-09-18T12:32:31.494+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-09-18T12:32:31.508+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-04T00:00:00+00:00 [queued]>
+[2026-09-18T12:32:31.511+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-04T00:00:00+00:00 [queued]>
+[2026-09-18T12:32:31.512+0000] {taskinstance.py:2306} INFO - Starting attempt 4 of 4
+[2026-09-18T12:32:31.520+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract> on 2019-10-04 00:00:00+00:00
+[2026-09-18T12:32:31.524+0000] {standard_task_runner.py:63} INFO - Started process 1516 to run task
+[2026-09-18T12:32:31.526+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ecommerce_data', 'extract', 'scheduled__2019-10-04T00:00:00+00:00', '--job-id', '22', '--raw', '--subdir', 'DAGS_FOLDER/etl.py', '--cfg-path', '/tmp/tmpidtlgr1q']
+[2026-09-18T12:32:31.527+0000] {standard_task_runner.py:91} INFO - Job 22: Subtask extract
+[2026-09-18T12:32:31.545+0000] {task_command.py:426} INFO - Running <TaskInstance: ecommerce_data.extract scheduled__2019-10-04T00:00:00+00:00 [running]> on host ac3d43ca2f24
+[2026-09-18T12:32:31.579+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='ecommerce_data' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2019-10-04T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='4' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2019-10-04T00:00:00+00:00'
+[2026-09-18T12:32:31.580+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-09-18T12:32:32.588+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-09-18T12:32:32.588+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/decorators/base.py", line 265, in execute
+    return_value = super().execute(context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/etl.py", line 26, in extract
+    script_run = subprocess.run(["spark-submit", "daily_etl.py", ds], check=True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['spark-submit', 'daily_etl.py', '2019-10-04']' returned non-zero exit status 2.
+[2026-09-18T12:32:32.591+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=ecommerce_data, task_id=extract, run_id=scheduled__2019-10-04T00:00:00+00:00, execution_date=20191004T000000, start_date=20260918T123231, end_date=20260918T123232
+[2026-09-18T12:32:32.596+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 22 for task extract (Command '['spark-submit', 'daily_etl.py', '2019-10-04']' returned non-zero exit status 2.; 1516)
+[2026-09-18T12:32:32.620+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-09-18T12:32:32.627+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-09-18T12:32:32.627+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-09-19T13:19:05.376+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-09-19T13:19:05.395+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-04T00:00:00+00:00 [queued]>
+[2026-09-19T13:19:05.399+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-04T00:00:00+00:00 [queued]>
+[2026-09-19T13:19:05.399+0000] {taskinstance.py:2306} INFO - Starting attempt 4 of 4
+[2026-09-19T13:19:05.408+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract> on 2019-10-04 00:00:00+00:00
+[2026-09-19T13:19:05.413+0000] {standard_task_runner.py:63} INFO - Started process 1150 to run task
+[2026-09-19T13:19:05.415+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ecommerce_data', 'extract', 'scheduled__2019-10-04T00:00:00+00:00', '--job-id', '25', '--raw', '--subdir', 'DAGS_FOLDER/etl.py', '--cfg-path', '/tmp/tmpy0so3r17']
+[2026-09-19T13:19:05.417+0000] {standard_task_runner.py:91} INFO - Job 25: Subtask extract
+[2026-09-19T13:19:05.447+0000] {task_command.py:426} INFO - Running <TaskInstance: ecommerce_data.extract scheduled__2019-10-04T00:00:00+00:00 [running]> on host 8e73891b263a
+[2026-09-19T13:19:05.503+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='ecommerce_data' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2019-10-04T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='4' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2019-10-04T00:00:00+00:00'
+[2026-09-19T13:19:05.504+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-09-19T13:19:11.589+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-09-19T13:19:11.589+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/decorators/base.py", line 265, in execute
+    return_value = super().execute(context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/etl.py", line 27, in extract
+    script_run = subprocess.run(["spark-submit", "/opt/airflow/dags/daily_etl.py", ds], check=True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['spark-submit', '/opt/airflow/dags/daily_etl.py', '2019-10-04']' returned non-zero exit status 1.
+[2026-09-19T13:19:11.599+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=ecommerce_data, task_id=extract, run_id=scheduled__2019-10-04T00:00:00+00:00, execution_date=20191004T000000, start_date=20260919T131905, end_date=20260919T131911
+[2026-09-19T13:19:11.609+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 25 for task extract (Command '['spark-submit', '/opt/airflow/dags/daily_etl.py', '2019-10-04']' returned non-zero exit status 1.; 1150)
+[2026-09-19T13:19:11.634+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-09-19T13:19:11.648+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-09-19T13:19:11.649+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-09-19T13:38:51.951+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-09-19T13:38:51.971+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-04T00:00:00+00:00 [queued]>
+[2026-09-19T13:38:51.975+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-04T00:00:00+00:00 [queued]>
+[2026-09-19T13:38:51.975+0000] {taskinstance.py:2306} INFO - Starting attempt 4 of 4
+[2026-09-19T13:38:51.985+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract> on 2019-10-04 00:00:00+00:00
+[2026-09-19T13:38:51.991+0000] {standard_task_runner.py:63} INFO - Started process 2069 to run task
+[2026-09-19T13:38:51.993+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ecommerce_data', 'extract', 'scheduled__2019-10-04T00:00:00+00:00', '--job-id', '61', '--raw', '--subdir', 'DAGS_FOLDER/etl.py', '--cfg-path', '/tmp/tmpkg5buxl8']
+[2026-09-19T13:38:51.994+0000] {standard_task_runner.py:91} INFO - Job 61: Subtask extract
+[2026-09-19T13:38:52.024+0000] {task_command.py:426} INFO - Running <TaskInstance: ecommerce_data.extract scheduled__2019-10-04T00:00:00+00:00 [running]> on host 8e73891b263a
+[2026-09-19T13:38:52.080+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='ecommerce_data' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2019-10-04T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='4' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2019-10-04T00:00:00+00:00'
+[2026-09-19T13:38:52.081+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-09-19T13:38:57.995+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-09-19T13:38:57.996+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/decorators/base.py", line 265, in execute
+    return_value = super().execute(context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/etl.py", line 27, in extract
+    script_run = subprocess.run(["spark-submit", "/opt/airflow/dags/daily_etl.py", ds], check=True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['spark-submit', '/opt/airflow/dags/daily_etl.py', '2019-10-04']' returned non-zero exit status 1.
+[2026-09-19T13:38:58.005+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=ecommerce_data, task_id=extract, run_id=scheduled__2019-10-04T00:00:00+00:00, execution_date=20191004T000000, start_date=20260919T133851, end_date=20260919T133858
+[2026-09-19T13:38:58.016+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 61 for task extract (Command '['spark-submit', '/opt/airflow/dags/daily_etl.py', '2019-10-04']' returned non-zero exit status 1.; 2069)
+[2026-09-19T13:38:58.048+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-09-19T13:38:58.056+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-09-19T13:38:58.056+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-09-19T14:09:36.538+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-09-19T14:09:36.559+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-04T00:00:00+00:00 [queued]>
+[2026-09-19T14:09:36.563+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-04T00:00:00+00:00 [queued]>
+[2026-09-19T14:09:36.563+0000] {taskinstance.py:2306} INFO - Starting attempt 4 of 4
+[2026-09-19T14:09:36.573+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract> on 2019-10-04 00:00:00+00:00
+[2026-09-19T14:09:36.579+0000] {standard_task_runner.py:63} INFO - Started process 5016 to run task
+[2026-09-19T14:09:36.581+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ecommerce_data', 'extract', 'scheduled__2019-10-04T00:00:00+00:00', '--job-id', '106', '--raw', '--subdir', 'DAGS_FOLDER/etl.py', '--cfg-path', '/tmp/tmpu6xw8tc7']
+[2026-09-19T14:09:36.582+0000] {standard_task_runner.py:91} INFO - Job 106: Subtask extract
+[2026-09-19T14:09:36.614+0000] {task_command.py:426} INFO - Running <TaskInstance: ecommerce_data.extract scheduled__2019-10-04T00:00:00+00:00 [running]> on host 8e73891b263a
+[2026-09-19T14:09:36.668+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='ecommerce_data' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2019-10-04T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='4' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2019-10-04T00:00:00+00:00'
+[2026-09-19T14:09:36.668+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-09-19T14:09:43.190+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-09-19T14:09:43.190+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/decorators/base.py", line 265, in execute
+    return_value = super().execute(context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/etl.py", line 27, in extract
+    script_run = subprocess.run([
+                 ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['spark-submit', '--packages', 'org.postgresql:postgresql:42.6.0', '/opt/airflow/dags/daily_etl.py', '2019-10-04']' returned non-zero exit status 1.
+[2026-09-19T14:09:43.199+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=ecommerce_data, task_id=extract, run_id=scheduled__2019-10-04T00:00:00+00:00, execution_date=20191004T000000, start_date=20260919T140936, end_date=20260919T140943
+[2026-09-19T14:09:43.211+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 106 for task extract (Command '['spark-submit', '--packages', 'org.postgresql:postgresql:42.6.0', '/opt/airflow/dags/daily_etl.py', '2019-10-04']' returned non-zero exit status 1.; 5016)
+[2026-09-19T14:09:43.235+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-09-19T14:09:43.249+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-09-19T14:09:43.250+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
