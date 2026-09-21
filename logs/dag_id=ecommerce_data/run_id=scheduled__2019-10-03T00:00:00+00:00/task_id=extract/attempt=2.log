@@ -182,3 +182,558 @@ subprocess.CalledProcessError: Command '['spark-submit', '--packages', 'org.post
 [2026-09-19T14:08:30.319+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
 [2026-09-19T14:08:30.333+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
 [2026-09-19T14:08:30.334+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-09-21T21:36:24.530+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-09-21T21:36:24.549+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-03T00:00:00+00:00 [queued]>
+[2026-09-21T21:36:24.553+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-03T00:00:00+00:00 [queued]>
+[2026-09-21T21:36:24.554+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 4
+[2026-09-21T21:36:24.563+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract> on 2019-10-03 00:00:00+00:00
+[2026-09-21T21:36:24.568+0000] {standard_task_runner.py:63} INFO - Started process 7573 to run task
+[2026-09-21T21:36:24.570+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ecommerce_data', 'extract', 'scheduled__2019-10-03T00:00:00+00:00', '--job-id', '78', '--raw', '--subdir', 'DAGS_FOLDER/etl.py', '--cfg-path', '/tmp/tmp9_sg7knm']
+[2026-09-21T21:36:24.571+0000] {standard_task_runner.py:91} INFO - Job 78: Subtask extract
+[2026-09-21T21:36:24.603+0000] {task_command.py:426} INFO - Running <TaskInstance: ecommerce_data.extract scheduled__2019-10-03T00:00:00+00:00 [running]> on host e6c3ac7e1715
+[2026-09-21T21:36:24.656+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='ecommerce_data' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2019-10-03T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2019-10-03T00:00:00+00:00'
+[2026-09-21T21:36:24.656+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-09-21T21:36:24.660+0000] {base.py:84} INFO - Using connection ID 'postgres_conn_id' for task execution.
+[2026-09-21T21:36:33.460+0000] {etl.py:68} ERROR - === СПРАВЖНЯ ПОМИЛКА ВІД SPARK ===
+[2026-09-21T21:36:33.460+0000] {etl.py:69} ERROR - /home/airflow/.local/lib/python3.11/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
+Ivy Default Cache set to: /home/airflow/.ivy2/cache
+The jars for the packages stored in: /home/airflow/.ivy2/jars
+org.postgresql#postgresql added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-38879c97-7f13-4857-b6dc-24403b45f358;1.0
+	confs: [default]
+	found org.postgresql#postgresql;42.6.0 in central
+	found org.checkerframework#checker-qual;3.31.0 in central
+:: resolution report :: resolve 121ms :: artifacts dl 4ms
+	:: modules in use:
+	org.checkerframework#checker-qual;3.31.0 from central in [default]
+	org.postgresql#postgresql;42.6.0 from central in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   2   |   0   |
+	---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent-38879c97-7f13-4857-b6dc-24403b45f358
+	confs: [default]
+	0 artifacts copied, 2 already retrieved (0kB/5ms)
+26/09/21 21:36:26 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/09/21 21:36:27 INFO SparkContext: Running Spark version 3.5.1
+26/09/21 21:36:27 INFO SparkContext: OS info Linux, 7.0.0-31-generic, amd64
+26/09/21 21:36:27 INFO SparkContext: Java version 17.0.20.1
+26/09/21 21:36:27 INFO ResourceUtils: ==============================================================
+26/09/21 21:36:27 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/09/21 21:36:27 INFO ResourceUtils: ==============================================================
+26/09/21 21:36:27 INFO SparkContext: Submitted application: Daily_ecommerce
+26/09/21 21:36:27 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/09/21 21:36:27 INFO ResourceProfile: Limiting resource is cpu
+26/09/21 21:36:27 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/09/21 21:36:27 INFO SecurityManager: Changing view acls to: airflow
+26/09/21 21:36:27 INFO SecurityManager: Changing modify acls to: airflow
+26/09/21 21:36:27 INFO SecurityManager: Changing view acls groups to: 
+26/09/21 21:36:27 INFO SecurityManager: Changing modify acls groups to: 
+26/09/21 21:36:27 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: airflow; groups with view permissions: EMPTY; users with modify permissions: airflow; groups with modify permissions: EMPTY
+26/09/21 21:36:27 INFO Utils: Successfully started service 'sparkDriver' on port 36401.
+26/09/21 21:36:27 INFO SparkEnv: Registering MapOutputTracker
+26/09/21 21:36:27 INFO SparkEnv: Registering BlockManagerMaster
+26/09/21 21:36:27 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/09/21 21:36:27 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/09/21 21:36:27 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/09/21 21:36:27 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-5650cdb7-d231-4525-b3ad-5bce5ddb1fb4
+26/09/21 21:36:27 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+26/09/21 21:36:27 INFO SparkEnv: Registering OutputCommitCoordinator
+26/09/21 21:36:27 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+26/09/21 21:36:27 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/09/21 21:36:27 INFO SparkContext: Added JAR file:///home/airflow/.ivy2/jars/org.postgresql_postgresql-42.6.0.jar at spark://e6c3ac7e1715:36401/jars/org.postgresql_postgresql-42.6.0.jar with timestamp 1790026587400
+26/09/21 21:36:27 INFO SparkContext: Added JAR file:///home/airflow/.ivy2/jars/org.checkerframework_checker-qual-3.31.0.jar at spark://e6c3ac7e1715:36401/jars/org.checkerframework_checker-qual-3.31.0.jar with timestamp 1790026587400
+26/09/21 21:36:27 INFO SparkContext: Added file file:///home/airflow/.ivy2/jars/org.postgresql_postgresql-42.6.0.jar at file:///home/airflow/.ivy2/jars/org.postgresql_postgresql-42.6.0.jar with timestamp 1790026587400
+26/09/21 21:36:27 INFO Utils: Copying /home/airflow/.ivy2/jars/org.postgresql_postgresql-42.6.0.jar to /tmp/spark-2d24e4d9-a2af-40c0-aabc-02a4b0625633/userFiles-30cc92ea-20be-4246-ba5b-225492dad085/org.postgresql_postgresql-42.6.0.jar
+26/09/21 21:36:27 INFO SparkContext: Added file file:///home/airflow/.ivy2/jars/org.checkerframework_checker-qual-3.31.0.jar at file:///home/airflow/.ivy2/jars/org.checkerframework_checker-qual-3.31.0.jar with timestamp 1790026587400
+26/09/21 21:36:27 INFO Utils: Copying /home/airflow/.ivy2/jars/org.checkerframework_checker-qual-3.31.0.jar to /tmp/spark-2d24e4d9-a2af-40c0-aabc-02a4b0625633/userFiles-30cc92ea-20be-4246-ba5b-225492dad085/org.checkerframework_checker-qual-3.31.0.jar
+26/09/21 21:36:28 INFO Executor: Starting executor ID driver on host e6c3ac7e1715
+26/09/21 21:36:28 INFO Executor: OS info Linux, 7.0.0-31-generic, amd64
+26/09/21 21:36:28 INFO Executor: Java version 17.0.20.1
+26/09/21 21:36:28 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+26/09/21 21:36:28 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@4e870ecc for default.
+26/09/21 21:36:28 INFO Executor: Fetching file:///home/airflow/.ivy2/jars/org.checkerframework_checker-qual-3.31.0.jar with timestamp 1790026587400
+26/09/21 21:36:28 INFO Utils: /home/airflow/.ivy2/jars/org.checkerframework_checker-qual-3.31.0.jar has been previously copied to /tmp/spark-2d24e4d9-a2af-40c0-aabc-02a4b0625633/userFiles-30cc92ea-20be-4246-ba5b-225492dad085/org.checkerframework_checker-qual-3.31.0.jar
+26/09/21 21:36:28 INFO Executor: Fetching file:///home/airflow/.ivy2/jars/org.postgresql_postgresql-42.6.0.jar with timestamp 1790026587400
+26/09/21 21:36:28 INFO Utils: /home/airflow/.ivy2/jars/org.postgresql_postgresql-42.6.0.jar has been previously copied to /tmp/spark-2d24e4d9-a2af-40c0-aabc-02a4b0625633/userFiles-30cc92ea-20be-4246-ba5b-225492dad085/org.postgresql_postgresql-42.6.0.jar
+26/09/21 21:36:28 INFO Executor: Fetching spark://e6c3ac7e1715:36401/jars/org.checkerframework_checker-qual-3.31.0.jar with timestamp 1790026587400
+26/09/21 21:36:28 INFO TransportClientFactory: Successfully created connection to e6c3ac7e1715/172.21.0.3:36401 after 39 ms (0 ms spent in bootstraps)
+26/09/21 21:36:28 INFO Utils: Fetching spark://e6c3ac7e1715:36401/jars/org.checkerframework_checker-qual-3.31.0.jar to /tmp/spark-2d24e4d9-a2af-40c0-aabc-02a4b0625633/userFiles-30cc92ea-20be-4246-ba5b-225492dad085/fetchFileTemp17714293938429819231.tmp
+26/09/21 21:36:28 INFO Utils: /tmp/spark-2d24e4d9-a2af-40c0-aabc-02a4b0625633/userFiles-30cc92ea-20be-4246-ba5b-225492dad085/fetchFileTemp17714293938429819231.tmp has been previously copied to /tmp/spark-2d24e4d9-a2af-40c0-aabc-02a4b0625633/userFiles-30cc92ea-20be-4246-ba5b-225492dad085/org.checkerframework_checker-qual-3.31.0.jar
+26/09/21 21:36:28 INFO Executor: Adding file:/tmp/spark-2d24e4d9-a2af-40c0-aabc-02a4b0625633/userFiles-30cc92ea-20be-4246-ba5b-225492dad085/org.checkerframework_checker-qual-3.31.0.jar to class loader default
+26/09/21 21:36:28 INFO Executor: Fetching spark://e6c3ac7e1715:36401/jars/org.postgresql_postgresql-42.6.0.jar with timestamp 1790026587400
+26/09/21 21:36:28 INFO Utils: Fetching spark://e6c3ac7e1715:36401/jars/org.postgresql_postgresql-42.6.0.jar to /tmp/spark-2d24e4d9-a2af-40c0-aabc-02a4b0625633/userFiles-30cc92ea-20be-4246-ba5b-225492dad085/fetchFileTemp4154590754035017115.tmp
+26/09/21 21:36:28 INFO Utils: /tmp/spark-2d24e4d9-a2af-40c0-aabc-02a4b0625633/userFiles-30cc92ea-20be-4246-ba5b-225492dad085/fetchFileTemp4154590754035017115.tmp has been previously copied to /tmp/spark-2d24e4d9-a2af-40c0-aabc-02a4b0625633/userFiles-30cc92ea-20be-4246-ba5b-225492dad085/org.postgresql_postgresql-42.6.0.jar
+26/09/21 21:36:28 INFO Executor: Adding file:/tmp/spark-2d24e4d9-a2af-40c0-aabc-02a4b0625633/userFiles-30cc92ea-20be-4246-ba5b-225492dad085/org.postgresql_postgresql-42.6.0.jar to class loader default
+26/09/21 21:36:28 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 40743.
+26/09/21 21:36:28 INFO NettyBlockTransferService: Server created on e6c3ac7e1715:40743
+26/09/21 21:36:28 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/09/21 21:36:28 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, e6c3ac7e1715, 40743, None)
+26/09/21 21:36:28 INFO BlockManagerMasterEndpoint: Registering block manager e6c3ac7e1715:40743 with 434.4 MiB RAM, BlockManagerId(driver, e6c3ac7e1715, 40743, None)
+26/09/21 21:36:28 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, e6c3ac7e1715, 40743, None)
+26/09/21 21:36:28 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, e6c3ac7e1715, 40743, None)
+26/09/21 21:36:28 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+26/09/21 21:36:28 INFO SharedState: Warehouse path is 'file:/opt/airflow/spark-warehouse'.
+26/09/21 21:36:29 INFO InMemoryFileIndex: It took 34 ms to list leaf files for 1 paths.
+26/09/21 21:36:29 INFO SparkContext: Starting job: parquet at NativeMethodAccessorImpl.java:0
+26/09/21 21:36:29 INFO DAGScheduler: Got job 0 (parquet at NativeMethodAccessorImpl.java:0) with 1 output partitions
+26/09/21 21:36:29 INFO DAGScheduler: Final stage: ResultStage 0 (parquet at NativeMethodAccessorImpl.java:0)
+26/09/21 21:36:29 INFO DAGScheduler: Parents of final stage: List()
+26/09/21 21:36:29 INFO DAGScheduler: Missing parents: List()
+26/09/21 21:36:29 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[1] at parquet at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/09/21 21:36:29 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 104.5 KiB, free 434.3 MiB)
+26/09/21 21:36:29 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 37.6 KiB, free 434.3 MiB)
+26/09/21 21:36:29 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on e6c3ac7e1715:40743 (size: 37.6 KiB, free: 434.4 MiB)
+26/09/21 21:36:29 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1585
+26/09/21 21:36:29 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[1] at parquet at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+26/09/21 21:36:29 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks resource profile 0
+26/09/21 21:36:29 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (e6c3ac7e1715, executor driver, partition 0, PROCESS_LOCAL, 8303 bytes) 
+26/09/21 21:36:29 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
+26/09/21 21:36:30 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 2034 bytes result sent to driver
+26/09/21 21:36:30 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 352 ms on e6c3ac7e1715 (executor driver) (1/1)
+26/09/21 21:36:30 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+26/09/21 21:36:30 INFO DAGScheduler: ResultStage 0 (parquet at NativeMethodAccessorImpl.java:0) finished in 0.495 s
+26/09/21 21:36:30 INFO DAGScheduler: Job 0 is finished. Cancelling potential speculative or zombie tasks for this job
+26/09/21 21:36:30 INFO TaskSchedulerImpl: Killing all running tasks in stage 0: Stage finished
+26/09/21 21:36:30 INFO DAGScheduler: Job 0 finished: parquet at NativeMethodAccessorImpl.java:0, took 0.530592 s
+26/09/21 21:36:30 INFO BlockManagerInfo: Removed broadcast_0_piece0 on e6c3ac7e1715:40743 in memory (size: 37.6 KiB, free: 434.4 MiB)
+26/09/21 21:36:31 INFO FileSourceStrategy: Pushed Filters: 
+26/09/21 21:36:31 INFO FileSourceStrategy: Post-Scan Filters: (((isnull(user_id#7) OR (cast(price#6 as int) <= 0)) OR isnull(event_type#1)) OR (event_type#1 = ))
+26/09/21 21:36:31 INFO ParquetUtils: Using default output committer for Parquet: org.apache.parquet.hadoop.ParquetOutputCommitter
+26/09/21 21:36:31 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/09/21 21:36:31 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+26/09/21 21:36:31 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+26/09/21 21:36:31 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/09/21 21:36:31 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+26/09/21 21:36:31 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+26/09/21 21:36:31 INFO CodeGenerator: Code generated in 162.45118 ms
+26/09/21 21:36:31 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 203.8 KiB, free 434.2 MiB)
+26/09/21 21:36:31 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 35.7 KiB, free 434.2 MiB)
+26/09/21 21:36:31 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on e6c3ac7e1715:40743 (size: 35.7 KiB, free: 434.4 MiB)
+26/09/21 21:36:31 INFO SparkContext: Created broadcast 1 from parquet at NativeMethodAccessorImpl.java:0
+26/09/21 21:36:31 INFO FileSourceScanExec: Planning scan with bin packing, max size: 5664392 bytes, open cost is considered as scanning 4194304 bytes.
+26/09/21 21:36:31 INFO SparkContext: Starting job: parquet at NativeMethodAccessorImpl.java:0
+26/09/21 21:36:31 INFO DAGScheduler: Got job 1 (parquet at NativeMethodAccessorImpl.java:0) with 8 output partitions
+26/09/21 21:36:31 INFO DAGScheduler: Final stage: ResultStage 1 (parquet at NativeMethodAccessorImpl.java:0)
+26/09/21 21:36:31 INFO DAGScheduler: Parents of final stage: List()
+26/09/21 21:36:31 INFO DAGScheduler: Missing parents: List()
+26/09/21 21:36:31 INFO DAGScheduler: Submitting ResultStage 1 (MapPartitionsRDD[5] at parquet at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/09/21 21:36:31 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 225.2 KiB, free 433.9 MiB)
+26/09/21 21:36:31 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 79.3 KiB, free 433.9 MiB)
+26/09/21 21:36:31 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on e6c3ac7e1715:40743 (size: 79.3 KiB, free: 434.3 MiB)
+26/09/21 21:36:31 INFO SparkContext: Created broadcast 2 from broadcast at DAGScheduler.scala:1585
+26/09/21 21:36:31 INFO DAGScheduler: Submitting 8 missing tasks from ResultStage 1 (MapPartitionsRDD[5] at parquet at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7))
+26/09/21 21:36:31 INFO TaskSchedulerImpl: Adding task set 1.0 with 8 tasks resource profile 0
+26/09/21 21:36:31 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 1) (e6c3ac7e1715, executor driver, partition 0, PROCESS_LOCAL, 8810 bytes) 
+26/09/21 21:36:31 INFO TaskSetManager: Starting task 1.0 in stage 1.0 (TID 2) (e6c3ac7e1715, executor driver, partition 1, PROCESS_LOCAL, 8810 bytes) 
+26/09/21 21:36:31 INFO TaskSetManager: Starting task 2.0 in stage 1.0 (TID 3) (e6c3ac7e1715, executor driver, partition 2, PROCESS_LOCAL, 8810 bytes) 
+26/09/21 21:36:31 INFO TaskSetManager: Starting task 3.0 in stage 1.0 (TID 4) (e6c3ac7e1715, executor driver, partition 3, PROCESS_LOCAL, 8810 bytes) 
+26/09/21 21:36:31 INFO TaskSetManager: Starting task 4.0 in stage 1.0 (TID 5) (e6c3ac7e1715, executor driver, partition 4, PROCESS_LOCAL, 8810 bytes) 
+26/09/21 21:36:31 INFO TaskSetManager: Starting task 5.0 in stage 1.0 (TID 6) (e6c3ac7e1715, executor driver, partition 5, PROCESS_LOCAL, 8810 bytes) 
+26/09/21 21:36:31 INFO TaskSetManager: Starting task 6.0 in stage 1.0 (TID 7) (e6c3ac7e1715, executor driver, partition 6, PROCESS_LOCAL, 8810 bytes) 
+26/09/21 21:36:31 INFO TaskSetManager: Starting task 7.0 in stage 1.0 (TID 8) (e6c3ac7e1715, executor driver, partition 7, PROCESS_LOCAL, 8810 bytes) 
+26/09/21 21:36:31 INFO Executor: Running task 0.0 in stage 1.0 (TID 1)
+26/09/21 21:36:31 INFO Executor: Running task 1.0 in stage 1.0 (TID 2)
+26/09/21 21:36:31 INFO Executor: Running task 2.0 in stage 1.0 (TID 3)
+26/09/21 21:36:31 INFO Executor: Running task 3.0 in stage 1.0 (TID 4)
+26/09/21 21:36:31 INFO Executor: Running task 4.0 in stage 1.0 (TID 5)
+26/09/21 21:36:31 INFO Executor: Running task 5.0 in stage 1.0 (TID 6)
+26/09/21 21:36:31 INFO Executor: Running task 6.0 in stage 1.0 (TID 7)
+26/09/21 21:36:31 INFO Executor: Running task 7.0 in stage 1.0 (TID 8)
+26/09/21 21:36:31 INFO CodeGenerator: Code generated in 39.501131 ms
+26/09/21 21:36:31 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/09/21 21:36:31 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+26/09/21 21:36:31 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/09/21 21:36:31 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+26/09/21 21:36:31 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/09/21 21:36:31 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/09/21 21:36:31 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/09/21 21:36:31 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+26/09/21 21:36:31 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+26/09/21 21:36:31 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/09/21 21:36:31 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+26/09/21 21:36:31 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+26/09/21 21:36:31 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/09/21 21:36:31 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/09/21 21:36:31 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+26/09/21 21:36:31 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+26/09/21 21:36:31 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/09/21 21:36:31 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/09/21 21:36:31 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+26/09/21 21:36:31 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+26/09/21 21:36:31 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+26/09/21 21:36:31 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+26/09/21 21:36:31 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/09/21 21:36:31 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+26/09/21 21:36:31 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+26/09/21 21:36:31 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/09/21 21:36:31 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+26/09/21 21:36:31 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+26/09/21 21:36:31 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+26/09/21 21:36:31 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+26/09/21 21:36:31 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+26/09/21 21:36:31 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/09/21 21:36:31 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+26/09/21 21:36:31 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+26/09/21 21:36:31 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/09/21 21:36:31 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+26/09/21 21:36:31 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+26/09/21 21:36:31 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-03/part-00003-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 5664392-11328784, partition values: [empty row]
+26/09/21 21:36:31 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-03/part-00002-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 5664392-11328784, partition values: [empty row]
+26/09/21 21:36:31 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+26/09/21 21:36:31 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-03/part-00002-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 0-5664392, partition values: [empty row]
+26/09/21 21:36:31 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+26/09/21 21:36:31 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-03/part-00003-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 16993176-17749260, partition values: [empty row]
+26/09/21 21:36:31 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+26/09/21 21:36:31 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/09/21 21:36:31 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+26/09/21 21:36:31 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+26/09/21 21:36:31 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-03/part-00002-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 11328784-16993176, partition values: [empty row]
+26/09/21 21:36:31 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+26/09/21 21:36:31 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+26/09/21 21:36:31 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/09/21 21:36:31 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+26/09/21 21:36:31 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-03/part-00003-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 11328784-16993176, partition values: [empty row]
+26/09/21 21:36:31 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+26/09/21 21:36:31 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-03/part-00002-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 16993176-19177274, partition values: [empty row]
+26/09/21 21:36:31 INFO CodecConfig: Compression: SNAPPY
+26/09/21 21:36:31 INFO CodecConfig: Compression: SNAPPY
+26/09/21 21:36:32 INFO ParquetOutputFormat: ParquetRecordWriter [block size: 134217728b, row group padding size: 8388608b, validating: false]
+26/09/21 21:36:32 INFO ParquetWriteSupport: Initialized Parquet WriteSupport with Catalyst schema:
+{
+  "type" : "struct",
+  "fields" : [ {
+    "name" : "event_time",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "event_type",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "product_id",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "category_id",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "category_code",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "brand",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "price",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "user_id",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "user_session",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  } ]
+}
+and corresponding Parquet message type:
+message spark_schema {
+  optional binary event_time (STRING);
+  optional binary event_type (STRING);
+  optional binary product_id (STRING);
+  optional binary category_id (STRING);
+  optional binary category_code (STRING);
+  optional binary brand (STRING);
+  optional binary price (STRING);
+  optional binary user_id (STRING);
+  optional binary user_session (STRING);
+}
+
+       
+26/09/21 21:36:32 INFO SparkHadoopMapRedUtil: No need to commit output of task because needsTaskCommit=false: attempt_202609212136314704401894477842755_0001_m_000006_7
+26/09/21 21:36:32 INFO SparkHadoopMapRedUtil: No need to commit output of task because needsTaskCommit=false: attempt_202609212136314704401894477842755_0001_m_000002_3
+26/09/21 21:36:32 INFO SparkHadoopMapRedUtil: No need to commit output of task because needsTaskCommit=false: attempt_202609212136314704401894477842755_0001_m_000005_6
+26/09/21 21:36:32 INFO SparkHadoopMapRedUtil: No need to commit output of task because needsTaskCommit=false: attempt_202609212136314704401894477842755_0001_m_000007_8
+26/09/21 21:36:32 INFO SparkHadoopMapRedUtil: No need to commit output of task because needsTaskCommit=false: attempt_202609212136314704401894477842755_0001_m_000003_4
+26/09/21 21:36:32 INFO Executor: Finished task 6.0 in stage 1.0 (TID 7). 2748 bytes result sent to driver
+26/09/21 21:36:32 INFO Executor: Finished task 3.0 in stage 1.0 (TID 4). 2705 bytes result sent to driver
+26/09/21 21:36:32 INFO Executor: Finished task 5.0 in stage 1.0 (TID 6). 2748 bytes result sent to driver
+26/09/21 21:36:32 INFO Executor: Finished task 2.0 in stage 1.0 (TID 3). 2748 bytes result sent to driver
+26/09/21 21:36:32 INFO Executor: Finished task 7.0 in stage 1.0 (TID 8). 2748 bytes result sent to driver
+26/09/21 21:36:32 INFO CodecPool: Got brand-new compressor [.snappy]
+26/09/21 21:36:32 INFO TaskSetManager: Finished task 6.0 in stage 1.0 (TID 7) in 312 ms on e6c3ac7e1715 (executor driver) (1/8)
+26/09/21 21:36:32 INFO TaskSetManager: Finished task 3.0 in stage 1.0 (TID 4) in 314 ms on e6c3ac7e1715 (executor driver) (2/8)
+26/09/21 21:36:32 INFO TaskSetManager: Finished task 5.0 in stage 1.0 (TID 6) in 315 ms on e6c3ac7e1715 (executor driver) (3/8)
+26/09/21 21:36:32 INFO TaskSetManager: Finished task 7.0 in stage 1.0 (TID 8) in 314 ms on e6c3ac7e1715 (executor driver) (4/8)
+26/09/21 21:36:32 INFO TaskSetManager: Finished task 2.0 in stage 1.0 (TID 3) in 318 ms on e6c3ac7e1715 (executor driver) (5/8)
+26/09/21 21:36:32 INFO CodecPool: Got brand-new decompressor [.snappy]
+26/09/21 21:36:32 INFO CodecPool: Got brand-new decompressor [.snappy]
+26/09/21 21:36:32 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-03/part-00003-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 0-5664392, partition values: [empty row]
+26/09/21 21:36:32 INFO CodecConfig: Compression: SNAPPY
+26/09/21 21:36:32 INFO CodecConfig: Compression: SNAPPY
+26/09/21 21:36:32 INFO CodecConfig: Compression: SNAPPY
+26/09/21 21:36:32 INFO CodecConfig: Compression: SNAPPY
+26/09/21 21:36:32 INFO ParquetOutputFormat: ParquetRecordWriter [block size: 134217728b, row group padding size: 8388608b, validating: false]
+26/09/21 21:36:32 INFO ParquetOutputFormat: ParquetRecordWriter [block size: 134217728b, row group padding size: 8388608b, validating: false]
+26/09/21 21:36:32 INFO ParquetWriteSupport: Initialized Parquet WriteSupport with Catalyst schema:
+{
+  "type" : "struct",
+  "fields" : [ {
+    "name" : "event_time",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "event_type",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "product_id",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "category_id",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "category_code",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "brand",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "price",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "user_id",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "user_session",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  } ]
+}
+and corresponding Parquet message type:
+message spark_schema {
+  optional binary event_time (STRING);
+  optional binary event_type (STRING);
+  optional binary product_id (STRING);
+  optional binary category_id (STRING);
+  optional binary category_code (STRING);
+  optional binary brand (STRING);
+  optional binary price (STRING);
+  optional binary user_id (STRING);
+  optional binary user_session (STRING);
+}
+
+       
+26/09/21 21:36:32 INFO ParquetWriteSupport: Initialized Parquet WriteSupport with Catalyst schema:
+{
+  "type" : "struct",
+  "fields" : [ {
+    "name" : "event_time",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "event_type",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "product_id",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "category_id",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "category_code",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "brand",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "price",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "user_id",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "user_session",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  } ]
+}
+and corresponding Parquet message type:
+message spark_schema {
+  optional binary event_time (STRING);
+  optional binary event_type (STRING);
+  optional binary product_id (STRING);
+  optional binary category_id (STRING);
+  optional binary category_code (STRING);
+  optional binary brand (STRING);
+  optional binary price (STRING);
+  optional binary user_id (STRING);
+  optional binary user_session (STRING);
+}
+
+       
+26/09/21 21:36:32 INFO FileOutputCommitter: Saved output of task 'attempt_202609212136314704401894477842755_0001_m_000000_1' to file:/opt/airflow/data/lake/rejected/events/2019-10-03/_temporary/0/task_202609212136314704401894477842755_0001_m_000000
+26/09/21 21:36:32 INFO SparkHadoopMapRedUtil: attempt_202609212136314704401894477842755_0001_m_000000_1: Committed. Elapsed time: 1 ms.
+26/09/21 21:36:32 INFO Executor: Finished task 0.0 in stage 1.0 (TID 1). 2791 bytes result sent to driver
+26/09/21 21:36:32 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 1) in 564 ms on e6c3ac7e1715 (executor driver) (6/8)
+26/09/21 21:36:32 INFO CodecPool: Got brand-new compressor [.snappy]
+26/09/21 21:36:32 INFO FileOutputCommitter: Saved output of task 'attempt_202609212136314704401894477842755_0001_m_000001_2' to file:/opt/airflow/data/lake/rejected/events/2019-10-03/_temporary/0/task_202609212136314704401894477842755_0001_m_000001
+26/09/21 21:36:32 INFO FileOutputCommitter: Saved output of task 'attempt_202609212136314704401894477842755_0001_m_000004_5' to file:/opt/airflow/data/lake/rejected/events/2019-10-03/_temporary/0/task_202609212136314704401894477842755_0001_m_000004
+26/09/21 21:36:32 INFO SparkHadoopMapRedUtil: attempt_202609212136314704401894477842755_0001_m_000001_2: Committed. Elapsed time: 1 ms.
+26/09/21 21:36:32 INFO SparkHadoopMapRedUtil: attempt_202609212136314704401894477842755_0001_m_000004_5: Committed. Elapsed time: 1 ms.
+26/09/21 21:36:32 INFO Executor: Finished task 1.0 in stage 1.0 (TID 2). 2834 bytes result sent to driver
+26/09/21 21:36:32 INFO Executor: Finished task 4.0 in stage 1.0 (TID 5). 2877 bytes result sent to driver
+26/09/21 21:36:32 INFO TaskSetManager: Finished task 1.0 in stage 1.0 (TID 2) in 1147 ms on e6c3ac7e1715 (executor driver) (7/8)
+26/09/21 21:36:32 INFO TaskSetManager: Finished task 4.0 in stage 1.0 (TID 5) in 1144 ms on e6c3ac7e1715 (executor driver) (8/8)
+26/09/21 21:36:32 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool 
+26/09/21 21:36:32 INFO DAGScheduler: ResultStage 1 (parquet at NativeMethodAccessorImpl.java:0) finished in 1.212 s
+26/09/21 21:36:32 INFO DAGScheduler: Job 1 is finished. Cancelling potential speculative or zombie tasks for this job
+26/09/21 21:36:32 INFO TaskSchedulerImpl: Killing all running tasks in stage 1: Stage finished
+26/09/21 21:36:32 INFO DAGScheduler: Job 1 finished: parquet at NativeMethodAccessorImpl.java:0, took 1.225350 s
+26/09/21 21:36:32 INFO FileFormatWriter: Start to commit write Job 33f8c0bd-cd07-4129-84fc-24cfb802ac45.
+26/09/21 21:36:32 INFO FileFormatWriter: Write Job 33f8c0bd-cd07-4129-84fc-24cfb802ac45 committed. Elapsed time: 15 ms.
+26/09/21 21:36:32 INFO FileFormatWriter: Finished processing stats for write job 33f8c0bd-cd07-4129-84fc-24cfb802ac45.
+26/09/21 21:36:33 INFO SparkContext: Invoking stop() from shutdown hook
+26/09/21 21:36:33 INFO SparkContext: SparkContext is stopping with exitCode 0.
+26/09/21 21:36:33 INFO SparkUI: Stopped Spark web UI at http://e6c3ac7e1715:4040
+26/09/21 21:36:33 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+26/09/21 21:36:33 INFO MemoryStore: MemoryStore cleared
+26/09/21 21:36:33 INFO BlockManager: BlockManager stopped
+26/09/21 21:36:33 INFO BlockManagerMaster: BlockManagerMaster stopped
+26/09/21 21:36:33 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+26/09/21 21:36:33 INFO SparkContext: Successfully stopped SparkContext
+26/09/21 21:36:33 INFO ShutdownHookManager: Shutdown hook called
+26/09/21 21:36:33 INFO ShutdownHookManager: Deleting directory /tmp/spark-2d24e4d9-a2af-40c0-aabc-02a4b0625633/pyspark-cbaaf41f-e994-483b-a1ed-bdeb4fddfdd8
+26/09/21 21:36:33 INFO ShutdownHookManager: Deleting directory /tmp/spark-acf4dd01-388b-4698-bcbe-3d2eef94cee8
+26/09/21 21:36:33 INFO ShutdownHookManager: Deleting directory /tmp/spark-2d24e4d9-a2af-40c0-aabc-02a4b0625633
+
+[2026-09-21T21:36:33.461+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-09-21T21:36:33.461+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/decorators/base.py", line 265, in execute
+    return_value = super().execute(context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/etl.py", line 70, in extract
+    raise e
+  File "/opt/airflow/dags/etl.py", line 59, in extract
+    script_run = subprocess.run([
+                 ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['spark-submit', '--packages', 'org.postgresql:postgresql:42.6.0', '/opt/airflow/dags/daily_etl.py', '2019-10-03']' returned non-zero exit status 1.
+[2026-09-21T21:36:33.466+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=ecommerce_data, task_id=extract, run_id=scheduled__2019-10-03T00:00:00+00:00, execution_date=20191003T000000, start_date=20260921T213624, end_date=20260921T213633
+[2026-09-21T21:36:33.475+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 78 for task extract (Command '['spark-submit', '--packages', 'org.postgresql:postgresql:42.6.0', '/opt/airflow/dags/daily_etl.py', '2019-10-03']' returned non-zero exit status 1.; 7573)
+[2026-09-21T21:36:33.497+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-09-21T21:36:33.511+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-09-21T21:36:33.512+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-09-21T22:22:42.259+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-09-21T22:22:42.280+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-03T00:00:00+00:00 [queued]>
+[2026-09-21T22:22:42.285+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-03T00:00:00+00:00 [queued]>
+[2026-09-21T22:22:42.286+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 4
+[2026-09-21T22:22:42.294+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract> on 2019-10-03 00:00:00+00:00
+[2026-09-21T22:22:42.300+0000] {standard_task_runner.py:63} INFO - Started process 25022 to run task
+[2026-09-21T22:22:42.303+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ecommerce_data', 'extract', 'scheduled__2019-10-03T00:00:00+00:00', '--job-id', '228', '--raw', '--subdir', 'DAGS_FOLDER/etl.py', '--cfg-path', '/tmp/tmpjp3y6tlt']
+[2026-09-21T22:22:42.304+0000] {standard_task_runner.py:91} INFO - Job 228: Subtask extract
+[2026-09-21T22:22:42.336+0000] {task_command.py:426} INFO - Running <TaskInstance: ecommerce_data.extract scheduled__2019-10-03T00:00:00+00:00 [running]> on host e6c3ac7e1715
+[2026-09-21T22:22:42.382+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='ecommerce_data' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2019-10-03T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2019-10-03T00:00:00+00:00'
+[2026-09-21T22:22:42.383+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-09-21T22:22:42.387+0000] {base.py:84} INFO - Using connection ID 'postgres_conn_id' for task execution.
+[2026-09-21T22:22:49.150+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-09-21T22:22:49.151+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/decorators/base.py", line 265, in execute
+    return_value = super().execute(context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/etl.py", line 58, in extract
+    script_run = subprocess.run([
+                 ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['spark-submit', '--packages', 'org.postgresql:postgresql:42.6.0', '/opt/airflow/dags/daily_etl.py', '2019-10-03']' returned non-zero exit status 1.
+[2026-09-21T22:22:49.159+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=ecommerce_data, task_id=extract, run_id=scheduled__2019-10-03T00:00:00+00:00, execution_date=20191003T000000, start_date=20260921T222242, end_date=20260921T222249
+[2026-09-21T22:22:49.169+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 228 for task extract (Command '['spark-submit', '--packages', 'org.postgresql:postgresql:42.6.0', '/opt/airflow/dags/daily_etl.py', '2019-10-03']' returned non-zero exit status 1.; 25022)
+[2026-09-21T22:22:49.207+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-09-21T22:22:49.230+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-09-21T22:22:49.232+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

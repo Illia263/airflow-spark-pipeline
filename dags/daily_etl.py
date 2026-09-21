@@ -1,10 +1,10 @@
 from pyspark.sql import SparkSession
 import pyspark.sql.functions as F
-from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType
-from datetime import datetime, date
+from datetime import datetime
+from pyspark.sql.types import DateType
 import sys
 import os
-import psycopg2
+from pyspark.sql.types import FloatType
 if __name__ == "__main__":
     spark = SparkSession.builder\
     .appName("Daily_ecommerce")\
@@ -22,25 +22,48 @@ if __name__ == "__main__":
         print(f"Here is an error {str(e)}!")
         sys.exit(1)
     df = spark.read.parquet(file_path)
-    grouped_users = df.groupBy('user_id').agg(
-        F.count("*").alias("total_events"),
-        F.sum("price").alias("total_spent")
-    )
+    db_host = os.getenv("DB_HOST")
+    db_port = os.getenv("DB_PORT")
+    db_name = os.getenv("DB_NAME")
+    db_user = os.getenv("DB_USER")
+    db_password = os.getenv("DB_PASSWORD")
+    db_url = f"jdbc:postgresql://{db_host}:{db_port}/{db_name}"
     dim_users_df = spark.read\
         .format("jdbc")\
-        .option("url", "jdbc:postgresql://ecommerce_dwh:5432/ecommerce_db")\
+        .option("url", db_url)\
         .option("dbtable", "dim_users")\
-        .option("user", "ecommerce_user")\
-        .option("password", "ecommerce_password")\
+        .option("user", db_user)\
+        .option("password", db_password)\
         .option("driver", "org.postgresql.Driver")\
         .load()
-    final_df = grouped_users.join(dim_users_df, on="user_id", how="left")
+    bad_data = (
+        F.col("user_id").isNull() |
+        (F.col("price").cast(FloatType()) <= 0) |
+        (F.col("event_type").isNull()) |
+        (F.col("event_type") == "")
+    )
+    rejected_df = df.filter(bad_data)
+    clean_df = df.filter(~bad_data)
+    rejected_path = f"/opt/airflow/data/lake/rejected/events/{sys.argv[1]}/"
+    rejected_df.write \
+        .mode("overwrite") \
+        .parquet(rejected_path)
+    
+    enriched_df = clean_df.join(dim_users_df, on='user_id', how="left")
+    grouped_users = enriched_df.groupBy('user_id', 'country').agg(
+        F.count(F.when(F.col("event_type") == "view", 1)).alias("total_views"),
+        F.sum(F.when(F.col("event_type") == "purchase", F.col("price").cast(FloatType())).otherwise(0)).alias("total_spend"),
+        F.count(F.when(F.col("event_type") == "cart", 1)).alias("total_carts"),
+        F.count(F.when(F.col("event_type") == "purchase", 1)).alias("total_purchases")
+    )
+    
+    final_df = grouped_users.withColumn("event_date", F.lit(sys.argv[1]).cast(DateType()))
     final_df.write \
     .format("jdbc")\
-    .option("url", "jdbc:postgresql://ecommerce_dwh:5432/ecommerce_db")\
+    .option("url", db_url)\
     .option("dbtable", "daily_sales")\
-    .option("user", "ecommerce_user")\
-    .option("password", "ecommerce_password")\
+    .option("user", db_user)\
+    .option("password", db_password)\
     .option("driver", "org.postgresql.Driver")\
     .mode("append")\
     .save()

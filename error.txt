@@ -1,247 +1,20 @@
-[2026-09-18T12:31:55.298+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
-[2026-09-18T12:31:55.311+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [queued]>
-[2026-09-18T12:31:55.314+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [queued]>
-[2026-09-18T12:31:55.315+0000] {taskinstance.py:2306} INFO - Starting attempt 4 of 4
-[2026-09-18T12:31:55.322+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract> on 2019-10-01 00:00:00+00:00
-[2026-09-18T12:31:55.325+0000] {standard_task_runner.py:63} INFO - Started process 621 to run task
-[2026-09-18T12:31:55.326+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ecommerce_data', 'extract', 'scheduled__2019-10-01T00:00:00+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/etl.py', '--cfg-path', '/tmp/tmp1r0d_xfu']
-[2026-09-18T12:31:55.327+0000] {standard_task_runner.py:91} INFO - Job 10: Subtask extract
-[2026-09-18T12:31:55.345+0000] {task_command.py:426} INFO - Running <TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [running]> on host ac3d43ca2f24
-[2026-09-18T12:31:55.372+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='ecommerce_data' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2019-10-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='4' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2019-10-01T00:00:00+00:00'
-[2026-09-18T12:31:55.373+0000] {taskinstance.py:430} INFO - ::endgroup::
-[2026-09-18T12:31:56.381+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
-[2026-09-18T12:31:56.381+0000] {taskinstance.py:2905} ERROR - Task failed with exception
-Traceback (most recent call last):
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
-    result = _execute_callable(context=context, **execute_callable_kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
-    return execute_callable(context=context, **execute_callable_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
-    return func(self, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/decorators/base.py", line 265, in execute
-    return_value = super().execute(context)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
-    return func(self, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 235, in execute
-    return_value = self.execute_callable()
-                   ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 252, in execute_callable
-    return self.python_callable(*self.op_args, **self.op_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/airflow/dags/etl.py", line 26, in extract
-    script_run = subprocess.run(["spark-submit", "daily_etl.py", ds], check=True)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/subprocess.py", line 571, in run
-    raise CalledProcessError(retcode, process.args,
-subprocess.CalledProcessError: Command '['spark-submit', 'daily_etl.py', '2019-10-01']' returned non-zero exit status 2.
-[2026-09-18T12:31:56.385+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=ecommerce_data, task_id=extract, run_id=scheduled__2019-10-01T00:00:00+00:00, execution_date=20191001T000000, start_date=20260918T123155, end_date=20260918T123156
-[2026-09-18T12:31:56.389+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 10 for task extract (Command '['spark-submit', 'daily_etl.py', '2019-10-01']' returned non-zero exit status 2.; 621)
-[2026-09-18T12:31:56.421+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
-[2026-09-18T12:31:56.431+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
-[2026-09-18T12:31:56.432+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
-[2026-09-19T13:11:28.488+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
-[2026-09-19T13:11:28.510+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [queued]>
-[2026-09-19T13:11:28.514+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [queued]>
-[2026-09-19T13:11:28.514+0000] {taskinstance.py:2306} INFO - Starting attempt 4 of 4
-[2026-09-19T13:11:28.524+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract> on 2019-10-01 00:00:00+00:00
-[2026-09-19T13:11:28.529+0000] {standard_task_runner.py:63} INFO - Started process 1164 to run task
-[2026-09-19T13:11:28.531+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ecommerce_data', 'extract', 'scheduled__2019-10-01T00:00:00+00:00', '--job-id', '11', '--raw', '--subdir', 'DAGS_FOLDER/etl.py', '--cfg-path', '/tmp/tmpk47yq2dx']
-[2026-09-19T13:11:28.533+0000] {standard_task_runner.py:91} INFO - Job 11: Subtask extract
-[2026-09-19T13:11:28.559+0000] {task_command.py:426} INFO - Running <TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [running]> on host 8e73891b263a
-[2026-09-19T13:11:28.601+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='ecommerce_data' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2019-10-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='4' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2019-10-01T00:00:00+00:00'
-[2026-09-19T13:11:28.602+0000] {taskinstance.py:430} INFO - ::endgroup::
-[2026-09-19T13:11:34.608+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
-[2026-09-19T13:11:34.609+0000] {taskinstance.py:2905} ERROR - Task failed with exception
-Traceback (most recent call last):
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
-    result = _execute_callable(context=context, **execute_callable_kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
-    return execute_callable(context=context, **execute_callable_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
-    return func(self, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/decorators/base.py", line 265, in execute
-    return_value = super().execute(context)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
-    return func(self, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 235, in execute
-    return_value = self.execute_callable()
-                   ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 252, in execute_callable
-    return self.python_callable(*self.op_args, **self.op_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/airflow/dags/etl.py", line 27, in extract
-    script_run = subprocess.run(["spark-submit", "/opt/airflow/dags/daily_etl.py", ds], check=True)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/subprocess.py", line 571, in run
-    raise CalledProcessError(retcode, process.args,
-subprocess.CalledProcessError: Command '['spark-submit', '/opt/airflow/dags/daily_etl.py', '2019-10-01']' returned non-zero exit status 1.
-[2026-09-19T13:11:34.615+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=ecommerce_data, task_id=extract, run_id=scheduled__2019-10-01T00:00:00+00:00, execution_date=20191001T000000, start_date=20260919T131128, end_date=20260919T131134
-[2026-09-19T13:11:34.627+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 11 for task extract (Command '['spark-submit', '/opt/airflow/dags/daily_etl.py', '2019-10-01']' returned non-zero exit status 1.; 1164)
-[2026-09-19T13:11:34.675+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
-[2026-09-19T13:11:34.689+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
-[2026-09-19T13:11:34.690+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
-[2026-09-19T13:28:14.959+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
-[2026-09-19T13:28:14.978+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [queued]>
-[2026-09-19T13:28:14.983+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [queued]>
-[2026-09-19T13:28:14.983+0000] {taskinstance.py:2306} INFO - Starting attempt 4 of 4
-[2026-09-19T13:28:14.992+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract> on 2019-10-01 00:00:00+00:00
-[2026-09-19T13:28:14.997+0000] {standard_task_runner.py:63} INFO - Started process 3152 to run task
-[2026-09-19T13:28:14.999+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ecommerce_data', 'extract', 'scheduled__2019-10-01T00:00:00+00:00', '--job-id', '47', '--raw', '--subdir', 'DAGS_FOLDER/etl.py', '--cfg-path', '/tmp/tmpwx1d_38j']
-[2026-09-19T13:28:15.000+0000] {standard_task_runner.py:91} INFO - Job 47: Subtask extract
-[2026-09-19T13:28:15.030+0000] {task_command.py:426} INFO - Running <TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [running]> on host 8e73891b263a
-[2026-09-19T13:28:15.085+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='ecommerce_data' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2019-10-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='4' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2019-10-01T00:00:00+00:00'
-[2026-09-19T13:28:15.085+0000] {taskinstance.py:430} INFO - ::endgroup::
-[2026-09-19T13:28:20.981+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
-[2026-09-19T13:28:20.981+0000] {taskinstance.py:2905} ERROR - Task failed with exception
-Traceback (most recent call last):
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
-    result = _execute_callable(context=context, **execute_callable_kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
-    return execute_callable(context=context, **execute_callable_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
-    return func(self, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/decorators/base.py", line 265, in execute
-    return_value = super().execute(context)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
-    return func(self, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 235, in execute
-    return_value = self.execute_callable()
-                   ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 252, in execute_callable
-    return self.python_callable(*self.op_args, **self.op_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/airflow/dags/etl.py", line 27, in extract
-    script_run = subprocess.run(["spark-submit", "/opt/airflow/dags/daily_etl.py", ds], check=True)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/subprocess.py", line 571, in run
-    raise CalledProcessError(retcode, process.args,
-subprocess.CalledProcessError: Command '['spark-submit', '/opt/airflow/dags/daily_etl.py', '2019-10-01']' returned non-zero exit status 1.
-[2026-09-19T13:28:20.990+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=ecommerce_data, task_id=extract, run_id=scheduled__2019-10-01T00:00:00+00:00, execution_date=20191001T000000, start_date=20260919T132814, end_date=20260919T132820
-[2026-09-19T13:28:21.002+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 47 for task extract (Command '['spark-submit', '/opt/airflow/dags/daily_etl.py', '2019-10-01']' returned non-zero exit status 1.; 3152)
-[2026-09-19T13:28:21.012+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
-[2026-09-19T13:28:21.027+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
-[2026-09-19T13:28:21.027+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
-[2026-09-19T13:56:12.388+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
-[2026-09-19T13:56:12.407+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [queued]>
-[2026-09-19T13:56:12.412+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [queued]>
-[2026-09-19T13:56:12.412+0000] {taskinstance.py:2306} INFO - Starting attempt 4 of 4
-[2026-09-19T13:56:12.421+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract> on 2019-10-01 00:00:00+00:00
-[2026-09-19T13:56:12.426+0000] {standard_task_runner.py:63} INFO - Started process 634 to run task
-[2026-09-19T13:56:12.428+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ecommerce_data', 'extract', 'scheduled__2019-10-01T00:00:00+00:00', '--job-id', '83', '--raw', '--subdir', 'DAGS_FOLDER/etl.py', '--cfg-path', '/tmp/tmpowg6mobg']
-[2026-09-19T13:56:12.429+0000] {standard_task_runner.py:91} INFO - Job 83: Subtask extract
-[2026-09-19T13:56:12.459+0000] {task_command.py:426} INFO - Running <TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [running]> on host 8e73891b263a
-[2026-09-19T13:56:12.516+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='ecommerce_data' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2019-10-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='4' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2019-10-01T00:00:00+00:00'
-[2026-09-19T13:56:12.517+0000] {taskinstance.py:430} INFO - ::endgroup::
-[2026-09-19T13:56:18.620+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
-[2026-09-19T13:56:18.621+0000] {taskinstance.py:2905} ERROR - Task failed with exception
-Traceback (most recent call last):
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
-    result = _execute_callable(context=context, **execute_callable_kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
-    return execute_callable(context=context, **execute_callable_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
-    return func(self, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/decorators/base.py", line 265, in execute
-    return_value = super().execute(context)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
-    return func(self, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 235, in execute
-    return_value = self.execute_callable()
-                   ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 252, in execute_callable
-    return self.python_callable(*self.op_args, **self.op_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/airflow/dags/etl.py", line 27, in extract
-    script_run = subprocess.run(["spark-submit", "/opt/airflow/dags/daily_etl.py", ds], check=True)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/subprocess.py", line 571, in run
-    raise CalledProcessError(retcode, process.args,
-subprocess.CalledProcessError: Command '['spark-submit', '/opt/airflow/dags/daily_etl.py', '2019-10-01']' returned non-zero exit status 1.
-[2026-09-19T13:56:18.629+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=ecommerce_data, task_id=extract, run_id=scheduled__2019-10-01T00:00:00+00:00, execution_date=20191001T000000, start_date=20260919T135612, end_date=20260919T135618
-[2026-09-19T13:56:18.640+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 83 for task extract (Command '['spark-submit', '/opt/airflow/dags/daily_etl.py', '2019-10-01']' returned non-zero exit status 1.; 634)
-[2026-09-19T13:56:18.686+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
-[2026-09-19T13:56:18.701+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
-[2026-09-19T13:56:18.702+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
-[2026-09-19T14:07:14.514+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
-[2026-09-19T14:07:14.540+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [queued]>
-[2026-09-19T14:07:14.547+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [queued]>
-[2026-09-19T14:07:14.548+0000] {taskinstance.py:2306} INFO - Starting attempt 4 of 4
-[2026-09-19T14:07:14.561+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract> on 2019-10-01 00:00:00+00:00
-[2026-09-19T14:07:14.566+0000] {standard_task_runner.py:63} INFO - Started process 2674 to run task
-[2026-09-19T14:07:14.569+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ecommerce_data', 'extract', 'scheduled__2019-10-01T00:00:00+00:00', '--job-id', '94', '--raw', '--subdir', 'DAGS_FOLDER/etl.py', '--cfg-path', '/tmp/tmp41f6or2n']
-[2026-09-19T14:07:14.571+0000] {standard_task_runner.py:91} INFO - Job 94: Subtask extract
-[2026-09-19T14:07:14.618+0000] {task_command.py:426} INFO - Running <TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [running]> on host 8e73891b263a
-[2026-09-19T14:07:14.668+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='ecommerce_data' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2019-10-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='4' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2019-10-01T00:00:00+00:00'
-[2026-09-19T14:07:14.669+0000] {taskinstance.py:430} INFO - ::endgroup::
-[2026-09-19T14:07:21.168+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
-[2026-09-19T14:07:21.168+0000] {taskinstance.py:2905} ERROR - Task failed with exception
-Traceback (most recent call last):
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
-    result = _execute_callable(context=context, **execute_callable_kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
-    return execute_callable(context=context, **execute_callable_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
-    return func(self, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/decorators/base.py", line 265, in execute
-    return_value = super().execute(context)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
-    return func(self, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 235, in execute
-    return_value = self.execute_callable()
-                   ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 252, in execute_callable
-    return self.python_callable(*self.op_args, **self.op_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/airflow/dags/etl.py", line 27, in extract
-    script_run = subprocess.run([
-                 ^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/subprocess.py", line 571, in run
-    raise CalledProcessError(retcode, process.args,
-subprocess.CalledProcessError: Command '['spark-submit', '--packages', 'org.postgresql:postgresql:42.6.0', '/opt/airflow/dags/daily_etl.py', '2019-10-01']' returned non-zero exit status 1.
-[2026-09-19T14:07:21.175+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=ecommerce_data, task_id=extract, run_id=scheduled__2019-10-01T00:00:00+00:00, execution_date=20191001T000000, start_date=20260919T140714, end_date=20260919T140721
-[2026-09-19T14:07:21.187+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 94 for task extract (Command '['spark-submit', '--packages', 'org.postgresql:postgresql:42.6.0', '/opt/airflow/dags/daily_etl.py', '2019-10-01']' returned non-zero exit status 1.; 2674)
-[2026-09-19T14:07:21.226+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
-[2026-09-19T14:07:21.240+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
-[2026-09-19T14:07:21.241+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
-[2026-09-21T21:08:00.036+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
-[2026-09-21T21:08:00.049+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [queued]>
-[2026-09-21T21:08:00.052+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [queued]>
-[2026-09-21T21:08:00.052+0000] {taskinstance.py:2306} INFO - Starting attempt 4 of 4
-[2026-09-21T21:08:00.059+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract> on 2019-10-01 00:00:00+00:00
-[2026-09-21T21:08:00.063+0000] {standard_task_runner.py:63} INFO - Started process 4298 to run task
-[2026-09-21T21:08:00.064+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ecommerce_data', 'extract', 'scheduled__2019-10-01T00:00:00+00:00', '--job-id', '53', '--raw', '--subdir', 'DAGS_FOLDER/etl.py', '--cfg-path', '/tmp/tmpwzqfxy1j']
-[2026-09-21T21:08:00.065+0000] {standard_task_runner.py:91} INFO - Job 53: Subtask extract
-[2026-09-21T21:08:00.084+0000] {task_command.py:426} INFO - Running <TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [running]> on host e6c3ac7e1715
-[2026-09-21T21:08:00.114+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='ecommerce_data' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2019-10-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='4' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2019-10-01T00:00:00+00:00'
-[2026-09-21T21:08:00.115+0000] {taskinstance.py:430} INFO - ::endgroup::
-[2026-09-21T21:08:00.117+0000] {base.py:84} INFO - Using connection ID 'postgres_conn_id' for task execution.
-[2026-09-21T21:08:06.263+0000] {etl.py:68} ERROR - === СПРАВЖНЯ ПОМИЛКА ВІД SPARK ===
-[2026-09-21T21:08:06.263+0000] {etl.py:69} ERROR - /home/airflow/.local/lib/python3.11/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
+e6c3ac7e1715
+*** Found local files:
+***   * /opt/airflow/logs/dag_id=ecommerce_data/run_id=scheduled__2019-10-01T00:00:00+00:00/task_id=extract/attempt=4.log
+[2026-09-18, 12:31:55 UTC] {local_task_job_runner.py:120} ▶ Pre task execution logs
+[2026-09-18, 12:31:56 UTC] {taskinstance.py:441} ▶ Post task execution logs
+[2026-09-19, 13:11:28 UTC] {local_task_job_runner.py:120} ▶ Pre task execution logs
+[2026-09-19, 13:11:34 UTC] {taskinstance.py:441} ▶ Post task execution logs
+[2026-09-19, 13:28:14 UTC] {local_task_job_runner.py:120} ▶ Pre task execution logs
+[2026-09-19, 13:28:20 UTC] {taskinstance.py:441} ▶ Post task execution logs
+[2026-09-19, 13:56:12 UTC] {local_task_job_runner.py:120} ▶ Pre task execution logs
+[2026-09-19, 13:56:18 UTC] {taskinstance.py:441} ▶ Post task execution logs
+[2026-09-19, 14:07:14 UTC] {local_task_job_runner.py:120} ▶ Pre task execution logs
+[2026-09-19, 14:07:21 UTC] {taskinstance.py:441} ▶ Post task execution logs
+[2026-09-21, 21:08:00 UTC] {local_task_job_runner.py:120} ▶ Pre task execution logs
+[2026-09-21, 21:08:00 UTC] {base.py:84} INFO - Using connection ID 'postgres_conn_id' for task execution.
+[2026-09-21, 21:08:06 UTC] {etl.py:68} ERROR - === СПРАВЖНЯ ПОМИЛКА ВІД SPARK ===
+[2026-09-21, 21:08:06 UTC] {etl.py:69} ERROR - /home/airflow/.local/lib/python3.11/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
 Ivy Default Cache set to: /home/airflow/.ivy2/cache
 The jars for the packages stored in: /home/airflow/.ivy2/jars
 org.postgresql#postgresql added as a dependency
@@ -398,9 +171,6 @@ org.postgresql#postgresql added as a dependency
 26/09/21 21:08:05 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
 26/09/21 21:08:05 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
 26/09/21 21:08:05 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
-26/09/21 21:08:05 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
-26/09/21 21:08:05 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
-26/09/21 21:08:05 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
 26/09/21 21:08:05 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
 26/09/21 21:08:05 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-01/part-00000-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 25591740-31989675, partition values: [empty row]
 26/09/21 21:08:05 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
@@ -413,8 +183,6 @@ org.postgresql#postgresql added as a dependency
 26/09/21 21:08:05 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
 26/09/21 21:08:05 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
 26/09/21 21:08:05 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
-26/09/21 21:08:05 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
-26/09/21 21:08:05 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
 26/09/21 21:08:05 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
 26/09/21 21:08:05 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
 26/09/21 21:08:05 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
@@ -425,17 +193,14 @@ org.postgresql#postgresql added as a dependency
 26/09/21 21:08:05 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
 26/09/21 21:08:05 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-01/part-00000-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 6397935-12795870, partition values: [empty row]
 26/09/21 21:08:05 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
-26/09/21 21:08:05 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
 26/09/21 21:08:05 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
 26/09/21 21:08:05 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
 26/09/21 21:08:05 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
-26/09/21 21:08:05 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
 26/09/21 21:08:05 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
 26/09/21 21:08:05 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-01/part-00000-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 19193805-25591740, partition values: [empty row]
 26/09/21 21:08:05 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-01/part-00001-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 0-6024092, partition values: [empty row]
 26/09/21 21:08:05 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
 26/09/21 21:08:05 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-01/part-00000-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 12795870-19193805, partition values: [empty row]
-26/09/21 21:08:05 INFO CodecConfig: Compression: SNAPPY
 26/09/21 21:08:05 INFO CodecConfig: Compression: SNAPPY
 26/09/21 21:08:05 INFO ParquetOutputFormat: ParquetRecordWriter [block size: 134217728b, row group padding size: 8388608b, validating: false]
 26/09/21 21:08:05 INFO ParquetWriteSupport: Initialized Parquet WriteSupport with Catalyst schema:
@@ -500,7 +265,6 @@ message spark_schema {
   optional binary user_id (STRING);
   optional binary user_session (STRING);
 }
-
        
 26/09/21 21:08:05 INFO CodecPool: Got brand-new compressor [.snappy]
 26/09/21 21:08:05 INFO SparkHadoopMapRedUtil: No need to commit output of task because needsTaskCommit=false: attempt_202609212108042331778103148031000_0001_m_000003_4
@@ -516,10 +280,8 @@ message spark_schema {
 26/09/21 21:08:05 INFO Executor: Finished task 4.0 in stage 1.0 (TID 5). 2748 bytes result sent to driver
 26/09/21 21:08:05 INFO TaskSetManager: Finished task 4.0 in stage 1.0 (TID 5) in 247 ms on e6c3ac7e1715 (executor driver) (4/7)
 26/09/21 21:08:05 INFO CodecPool: Got brand-new decompressor [.snappy]
-26/09/21 21:08:05 INFO CodecPool: Got brand-new decompressor [.snappy]
 26/09/21 21:08:05 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-01/part-00000-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 0-6397935, partition values: [empty row]
 26/09/21 21:08:05 INFO CodecConfig: Compression: SNAPPY
-26/09/21 21:08:05 INFO CodecConfig: Compression: SNAPPY
 26/09/21 21:08:05 INFO ParquetOutputFormat: ParquetRecordWriter [block size: 134217728b, row group padding size: 8388608b, validating: false]
 26/09/21 21:08:05 INFO ParquetWriteSupport: Initialized Parquet WriteSupport with Catalyst schema:
 {
@@ -583,10 +345,8 @@ message spark_schema {
   optional binary user_id (STRING);
   optional binary user_session (STRING);
 }
-
        
 26/09/21 21:08:05 INFO CodecConfig: Compression: SNAPPY
-26/09/21 21:08:05 INFO CodecConfig: Compression: SNAPPY
 26/09/21 21:08:05 INFO ParquetOutputFormat: ParquetRecordWriter [block size: 134217728b, row group padding size: 8388608b, validating: false]
 26/09/21 21:08:05 INFO ParquetWriteSupport: Initialized Parquet WriteSupport with Catalyst schema:
 {
@@ -650,7 +410,6 @@ message spark_schema {
   optional binary user_id (STRING);
   optional binary user_session (STRING);
 }
-
        
 26/09/21 21:08:05 INFO FileOutputCommitter: Saved output of task 'attempt_202609212108042331778103148031000_0001_m_000000_1' to file:/opt/airflow/data/lake/rejected/events/2019-10-01/_temporary/0/task_202609212108042331778103148031000_0001_m_000000
 26/09/21 21:08:05 INFO SparkHadoopMapRedUtil: attempt_202609212108042331778103148031000_0001_m_000000_1: Committed. Elapsed time: 0 ms.
@@ -686,58 +445,11 @@ message spark_schema {
 26/09/21 21:08:06 INFO ShutdownHookManager: Deleting directory /tmp/spark-449de88e-cc97-4113-83de-13e92d5d1889
 26/09/21 21:08:06 INFO ShutdownHookManager: Deleting directory /tmp/spark-c578bbf3-041e-4cee-a257-71ab5d788ffd
 26/09/21 21:08:06 INFO ShutdownHookManager: Deleting directory /tmp/spark-c578bbf3-041e-4cee-a257-71ab5d788ffd/pyspark-e0e5d3e6-774d-4448-a893-2843c53732f3
-
-[2026-09-21T21:08:06.263+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
-[2026-09-21T21:08:06.263+0000] {taskinstance.py:2905} ERROR - Task failed with exception
-Traceback (most recent call last):
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
-    result = _execute_callable(context=context, **execute_callable_kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
-    return execute_callable(context=context, **execute_callable_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
-    return func(self, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/decorators/base.py", line 265, in execute
-    return_value = super().execute(context)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
-    return func(self, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 235, in execute
-    return_value = self.execute_callable()
-                   ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 252, in execute_callable
-    return self.python_callable(*self.op_args, **self.op_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/airflow/dags/etl.py", line 70, in extract
-    raise e
-  File "/opt/airflow/dags/etl.py", line 59, in extract
-    script_run = subprocess.run([
-                 ^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/subprocess.py", line 571, in run
-    raise CalledProcessError(retcode, process.args,
-subprocess.CalledProcessError: Command '['spark-submit', '--packages', 'org.postgresql:postgresql:42.6.0', '/opt/airflow/dags/daily_etl.py', '2019-10-01']' returned non-zero exit status 1.
-[2026-09-21T21:08:06.267+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=ecommerce_data, task_id=extract, run_id=scheduled__2019-10-01T00:00:00+00:00, execution_date=20191001T000000, start_date=20260921T210800, end_date=20260921T210806
-[2026-09-21T21:08:06.272+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 53 for task extract (Command '['spark-submit', '--packages', 'org.postgresql:postgresql:42.6.0', '/opt/airflow/dags/daily_etl.py', '2019-10-01']' returned non-zero exit status 1.; 4298)
-[2026-09-21T21:08:06.297+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
-[2026-09-21T21:08:06.303+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
-[2026-09-21T21:08:06.303+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
-[2026-09-21T21:12:45.077+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
-[2026-09-21T21:12:45.091+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [queued]>
-[2026-09-21T21:12:45.094+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [queued]>
-[2026-09-21T21:12:45.094+0000] {taskinstance.py:2306} INFO - Starting attempt 4 of 4
-[2026-09-21T21:12:45.101+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract> on 2019-10-01 00:00:00+00:00
-[2026-09-21T21:12:45.104+0000] {standard_task_runner.py:63} INFO - Started process 6029 to run task
-[2026-09-21T21:12:45.106+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ecommerce_data', 'extract', 'scheduled__2019-10-01T00:00:00+00:00', '--job-id', '66', '--raw', '--subdir', 'DAGS_FOLDER/etl.py', '--cfg-path', '/tmp/tmp727xqh7b']
-[2026-09-21T21:12:45.107+0000] {standard_task_runner.py:91} INFO - Job 66: Subtask extract
-[2026-09-21T21:12:45.126+0000] {task_command.py:426} INFO - Running <TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [running]> on host e6c3ac7e1715
-[2026-09-21T21:12:45.155+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='ecommerce_data' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2019-10-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='4' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2019-10-01T00:00:00+00:00'
-[2026-09-21T21:12:45.155+0000] {taskinstance.py:430} INFO - ::endgroup::
-[2026-09-21T21:12:45.158+0000] {base.py:84} INFO - Using connection ID 'postgres_conn_id' for task execution.
-[2026-09-21T21:12:51.373+0000] {etl.py:68} ERROR - === СПРАВЖНЯ ПОМИЛКА ВІД SPARK ===
-[2026-09-21T21:12:51.373+0000] {etl.py:69} ERROR - /home/airflow/.local/lib/python3.11/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
+[2026-09-21, 21:08:06 UTC] {taskinstance.py:441} ▶ Post task execution logs
+[2026-09-21, 21:12:45 UTC] {local_task_job_runner.py:120} ▶ Pre task execution logs
+[2026-09-21, 21:12:45 UTC] {base.py:84} INFO - Using connection ID 'postgres_conn_id' for task execution.
+[2026-09-21, 21:12:51 UTC] {etl.py:68} ERROR - === СПРАВЖНЯ ПОМИЛКА ВІД SPARK ===
+[2026-09-21, 21:12:51 UTC] {etl.py:69} ERROR - /home/airflow/.local/lib/python3.11/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
 Ivy Default Cache set to: /home/airflow/.ivy2/cache
 The jars for the packages stored in: /home/airflow/.ivy2/jars
 org.postgresql#postgresql added as a dependency
@@ -884,7 +596,6 @@ org.postgresql#postgresql added as a dependency
 26/09/21 21:12:50 INFO Executor: Running task 6.0 in stage 1.0 (TID 7)
 26/09/21 21:12:50 INFO CodeGenerator: Code generated in 35.857027 ms
 26/09/21 21:12:50 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
-26/09/21 21:12:50 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
 26/09/21 21:12:50 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
 26/09/21 21:12:50 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
 26/09/21 21:12:50 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
@@ -904,34 +615,23 @@ org.postgresql#postgresql added as a dependency
 26/09/21 21:12:50 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
 26/09/21 21:12:50 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
 26/09/21 21:12:50 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
-26/09/21 21:12:50 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
 26/09/21 21:12:50 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
-26/09/21 21:12:50 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
 26/09/21 21:12:50 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
 26/09/21 21:12:50 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-01/part-00000-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 31989675-36770786, partition values: [empty row]
 26/09/21 21:12:50 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+26/09/21 21:12:50 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/09/21 21:12:50 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+26/09/21 21:12:50 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/09/21 21:12:50 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
 26/09/21 21:12:50 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
 26/09/21 21:12:50 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
-26/09/21 21:12:50 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
-26/09/21 21:12:50 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
-26/09/21 21:12:50 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
-26/09/21 21:12:50 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
-26/09/21 21:12:50 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
-26/09/21 21:12:50 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
-26/09/21 21:12:50 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
-26/09/21 21:12:50 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
-26/09/21 21:12:50 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
-26/09/21 21:12:50 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
-26/09/21 21:12:50 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
 26/09/21 21:12:50 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
 26/09/21 21:12:50 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
 26/09/21 21:12:50 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-01/part-00000-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 6397935-12795870, partition values: [empty row]
 26/09/21 21:12:50 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
-26/09/21 21:12:50 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
 26/09/21 21:12:50 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-01/part-00000-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 12795870-19193805, partition values: [empty row]
 26/09/21 21:12:50 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
 26/09/21 21:12:50 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-01/part-00000-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 19193805-25591740, partition values: [empty row]
-26/09/21 21:12:50 INFO CodecConfig: Compression: SNAPPY
 26/09/21 21:12:50 INFO CodecConfig: Compression: SNAPPY
 26/09/21 21:12:50 INFO ParquetOutputFormat: ParquetRecordWriter [block size: 134217728b, row group padding size: 8388608b, validating: false]
 26/09/21 21:12:50 INFO ParquetWriteSupport: Initialized Parquet WriteSupport with Catalyst schema:
@@ -996,7 +696,6 @@ message spark_schema {
   optional binary user_id (STRING);
   optional binary user_session (STRING);
 }
-
        
 26/09/21 21:12:50 INFO SparkHadoopMapRedUtil: No need to commit output of task because needsTaskCommit=false: attempt_202609212112508192004405356288943_0001_m_000001_2
 26/09/21 21:12:50 INFO SparkHadoopMapRedUtil: No need to commit output of task because needsTaskCommit=false: attempt_202609212112508192004405356288943_0001_m_000004_5
@@ -1012,9 +711,7 @@ message spark_schema {
 26/09/21 21:12:50 INFO TaskSetManager: Finished task 6.0 in stage 1.0 (TID 7) in 222 ms on e6c3ac7e1715 (executor driver) (3/7)
 26/09/21 21:12:50 INFO TaskSetManager: Finished task 1.0 in stage 1.0 (TID 2) in 224 ms on e6c3ac7e1715 (executor driver) (4/7)
 26/09/21 21:12:50 INFO CodecPool: Got brand-new decompressor [.snappy]
-26/09/21 21:12:50 INFO CodecPool: Got brand-new decompressor [.snappy]
 26/09/21 21:12:50 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-01/part-00000-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 0-6397935, partition values: [empty row]
-26/09/21 21:12:50 INFO CodecConfig: Compression: SNAPPY
 26/09/21 21:12:50 INFO CodecConfig: Compression: SNAPPY
 26/09/21 21:12:50 INFO ParquetOutputFormat: ParquetRecordWriter [block size: 134217728b, row group padding size: 8388608b, validating: false]
 26/09/21 21:12:50 INFO ParquetWriteSupport: Initialized Parquet WriteSupport with Catalyst schema:
@@ -1079,9 +776,7 @@ message spark_schema {
   optional binary user_id (STRING);
   optional binary user_session (STRING);
 }
-
        
-26/09/21 21:12:50 INFO CodecConfig: Compression: SNAPPY
 26/09/21 21:12:50 INFO CodecConfig: Compression: SNAPPY
 26/09/21 21:12:50 INFO ParquetOutputFormat: ParquetRecordWriter [block size: 134217728b, row group padding size: 8388608b, validating: false]
 26/09/21 21:12:50 INFO FileOutputCommitter: Saved output of task 'attempt_202609212112508192004405356288943_0001_m_000000_1' to file:/opt/airflow/data/lake/rejected/events/2019-10-01/_temporary/0/task_202609212112508192004405356288943_0001_m_000000
@@ -1148,7 +843,6 @@ message spark_schema {
   optional binary user_id (STRING);
   optional binary user_session (STRING);
 }
-
        
 26/09/21 21:12:50 INFO Executor: Finished task 0.0 in stage 1.0 (TID 1). 2748 bytes result sent to driver
 26/09/21 21:12:50 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 1) in 392 ms on e6c3ac7e1715 (executor driver) (5/7)
@@ -1182,58 +876,11 @@ message spark_schema {
 26/09/21 21:12:51 INFO ShutdownHookManager: Deleting directory /tmp/spark-d8027050-c255-4943-ada2-303bb80e7fbe
 26/09/21 21:12:51 INFO ShutdownHookManager: Deleting directory /tmp/spark-2a85a434-bdcc-45f6-b008-db4080095c30
 26/09/21 21:12:51 INFO ShutdownHookManager: Deleting directory /tmp/spark-d8027050-c255-4943-ada2-303bb80e7fbe/pyspark-07069deb-d47f-4abe-b1c6-d88be8abf5de
-
-[2026-09-21T21:12:51.373+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
-[2026-09-21T21:12:51.373+0000] {taskinstance.py:2905} ERROR - Task failed with exception
-Traceback (most recent call last):
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
-    result = _execute_callable(context=context, **execute_callable_kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
-    return execute_callable(context=context, **execute_callable_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
-    return func(self, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/decorators/base.py", line 265, in execute
-    return_value = super().execute(context)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
-    return func(self, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 235, in execute
-    return_value = self.execute_callable()
-                   ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 252, in execute_callable
-    return self.python_callable(*self.op_args, **self.op_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/airflow/dags/etl.py", line 70, in extract
-    raise e
-  File "/opt/airflow/dags/etl.py", line 59, in extract
-    script_run = subprocess.run([
-                 ^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/subprocess.py", line 571, in run
-    raise CalledProcessError(retcode, process.args,
-subprocess.CalledProcessError: Command '['spark-submit', '--packages', 'org.postgresql:postgresql:42.6.0', '/opt/airflow/dags/daily_etl.py', '2019-10-01']' returned non-zero exit status 1.
-[2026-09-21T21:12:51.377+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=ecommerce_data, task_id=extract, run_id=scheduled__2019-10-01T00:00:00+00:00, execution_date=20191001T000000, start_date=20260921T211245, end_date=20260921T211251
-[2026-09-21T21:12:51.381+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 66 for task extract (Command '['spark-submit', '--packages', 'org.postgresql:postgresql:42.6.0', '/opt/airflow/dags/daily_etl.py', '2019-10-01']' returned non-zero exit status 1.; 6029)
-[2026-09-21T21:12:51.405+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
-[2026-09-21T21:12:51.410+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
-[2026-09-21T21:12:51.411+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
-[2026-09-21T22:10:19.718+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
-[2026-09-21T22:10:19.737+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [queued]>
-[2026-09-21T22:10:19.742+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [queued]>
-[2026-09-21T22:10:19.742+0000] {taskinstance.py:2306} INFO - Starting attempt 4 of 4
-[2026-09-21T22:10:19.751+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract> on 2019-10-01 00:00:00+00:00
-[2026-09-21T22:10:19.757+0000] {standard_task_runner.py:63} INFO - Started process 22896 to run task
-[2026-09-21T22:10:19.759+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ecommerce_data', 'extract', 'scheduled__2019-10-01T00:00:00+00:00', '--job-id', '209', '--raw', '--subdir', 'DAGS_FOLDER/etl.py', '--cfg-path', '/tmp/tmplz247fmi']
-[2026-09-21T22:10:19.760+0000] {standard_task_runner.py:91} INFO - Job 209: Subtask extract
-[2026-09-21T22:10:19.795+0000] {task_command.py:426} INFO - Running <TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [running]> on host e6c3ac7e1715
-[2026-09-21T22:10:19.845+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='ecommerce_data' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2019-10-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='4' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2019-10-01T00:00:00+00:00'
-[2026-09-21T22:10:19.846+0000] {taskinstance.py:430} INFO - ::endgroup::
-[2026-09-21T22:10:19.849+0000] {base.py:84} INFO - Using connection ID 'postgres_conn_id' for task execution.
-[2026-09-21T22:10:28.709+0000] {etl.py:68} ERROR - === СПРАВЖНЯ ПОМИЛКА ВІД SPARK ===
-[2026-09-21T22:10:28.709+0000] {etl.py:69} ERROR - /home/airflow/.local/lib/python3.11/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
+[2026-09-21, 21:12:51 UTC] {taskinstance.py:441} ▶ Post task execution logs
+[2026-09-21, 22:10:19 UTC] {local_task_job_runner.py:120} ▶ Pre task execution logs
+[2026-09-21, 22:10:19 UTC] {base.py:84} INFO - Using connection ID 'postgres_conn_id' for task execution.
+[2026-09-21, 22:10:28 UTC] {etl.py:68} ERROR - === СПРАВЖНЯ ПОМИЛКА ВІД SPARK ===
+[2026-09-21, 22:10:28 UTC] {etl.py:69} ERROR - /home/airflow/.local/lib/python3.11/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
 Ivy Default Cache set to: /home/airflow/.ivy2/cache
 The jars for the packages stored in: /home/airflow/.ivy2/jars
 org.postgresql#postgresql added as a dependency
@@ -1392,7 +1039,6 @@ org.postgresql#postgresql added as a dependency
 26/09/21 22:10:27 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
 26/09/21 22:10:27 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
 26/09/21 22:10:27 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
-26/09/21 22:10:27 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
 26/09/21 22:10:27 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
 26/09/21 22:10:27 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
 26/09/21 22:10:27 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
@@ -1400,7 +1046,6 @@ org.postgresql#postgresql added as a dependency
 26/09/21 22:10:27 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
 26/09/21 22:10:27 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
 26/09/21 22:10:27 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
-26/09/21 22:10:27 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
 26/09/21 22:10:27 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
 26/09/21 22:10:27 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-01/part-00000-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 19193805-25591740, partition values: [empty row]
 26/09/21 22:10:27 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
@@ -1408,8 +1053,6 @@ org.postgresql#postgresql added as a dependency
 26/09/21 22:10:27 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-01/part-00000-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 25591740-31989675, partition values: [empty row]
 26/09/21 22:10:27 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
 26/09/21 22:10:27 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
-26/09/21 22:10:27 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
-26/09/21 22:10:27 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
 26/09/21 22:10:27 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
 26/09/21 22:10:27 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
 26/09/21 22:10:27 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-01/part-00000-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 12795870-19193805, partition values: [empty row]
@@ -1492,7 +1135,6 @@ message spark_schema {
   optional binary user_id (STRING);
   optional binary user_session (STRING);
 }
-
        
 26/09/21 22:10:27 INFO CodecPool: Got brand-new compressor [.snappy]
 26/09/21 22:10:27 INFO SparkHadoopMapRedUtil: No need to commit output of task because needsTaskCommit=false: attempt_202609212210268911440989836307479_0001_m_000004_5
@@ -1508,10 +1150,8 @@ message spark_schema {
 26/09/21 22:10:27 INFO TaskSetManager: Finished task 1.0 in stage 1.0 (TID 2) in 318 ms on e6c3ac7e1715 (executor driver) (3/7)
 26/09/21 22:10:27 INFO TaskSetManager: Finished task 4.0 in stage 1.0 (TID 5) in 317 ms on e6c3ac7e1715 (executor driver) (4/7)
 26/09/21 22:10:27 INFO CodecPool: Got brand-new decompressor [.snappy]
-26/09/21 22:10:27 INFO CodecPool: Got brand-new decompressor [.snappy]
 26/09/21 22:10:27 INFO FileScanRDD: Reading File path: file:///opt/airflow/data/lake/raw/events/2019-Oct/event_date=2019-10-01/part-00000-e6dbecb7-a75e-4a1e-be16-8089c329fa2c.c000.snappy.parquet, range: 0-6397935, partition values: [empty row]
 26/09/21 22:10:27 INFO CodecConfig: Compression: SNAPPY
-26/09/21 22:10:27 INFO CodecConfig: Compression: SNAPPY
 26/09/21 22:10:27 INFO ParquetOutputFormat: ParquetRecordWriter [block size: 134217728b, row group padding size: 8388608b, validating: false]
 26/09/21 22:10:27 INFO ParquetWriteSupport: Initialized Parquet WriteSupport with Catalyst schema:
 {
@@ -1575,10 +1215,8 @@ message spark_schema {
   optional binary user_id (STRING);
   optional binary user_session (STRING);
 }
-
        
 26/09/21 22:10:27 INFO CodecConfig: Compression: SNAPPY
-26/09/21 22:10:27 INFO CodecConfig: Compression: SNAPPY
 26/09/21 22:10:27 INFO ParquetOutputFormat: ParquetRecordWriter [block size: 134217728b, row group padding size: 8388608b, validating: false]
 26/09/21 22:10:27 INFO ParquetWriteSupport: Initialized Parquet WriteSupport with Catalyst schema:
 {
@@ -1642,7 +1280,6 @@ message spark_schema {
   optional binary user_id (STRING);
   optional binary user_session (STRING);
 }
-
        
 26/09/21 22:10:27 INFO FileOutputCommitter: Saved output of task 'attempt_202609212210268911440989836307479_0001_m_000000_1' to file:/opt/airflow/data/lake/rejected/events/2019-10-01/_temporary/0/task_202609212210268911440989836307479_0001_m_000000
 26/09/21 22:10:27 INFO SparkHadoopMapRedUtil: attempt_202609212210268911440989836307479_0001_m_000000_1: Committed. Elapsed time: 1 ms.
@@ -1678,9 +1315,8 @@ message spark_schema {
 26/09/21 22:10:28 INFO ShutdownHookManager: Deleting directory /tmp/spark-933af235-7256-447f-a1e8-157a6f368a2c/pyspark-666b7f8e-1cbf-4773-ad9a-a27518d02beb
 26/09/21 22:10:28 INFO ShutdownHookManager: Deleting directory /tmp/spark-075b4f09-c1f4-4450-818f-145b0922749d
 26/09/21 22:10:28 INFO ShutdownHookManager: Deleting directory /tmp/spark-933af235-7256-447f-a1e8-157a6f368a2c
-
-[2026-09-21T22:10:28.710+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
-[2026-09-21T22:10:28.710+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+[2026-09-21, 22:10:28 UTC] {taskinstance.py:441} ▼ Post task execution logs
+[2026-09-21, 22:10:28 UTC] {taskinstance.py:2905} ERROR - Task failed with exception
 Traceback (most recent call last):
   File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
     result = _execute_callable(context=context, **execute_callable_kwargs)
@@ -1711,176 +1347,8 @@ Traceback (most recent call last):
   File "/usr/local/lib/python3.11/subprocess.py", line 571, in run
     raise CalledProcessError(retcode, process.args,
 subprocess.CalledProcessError: Command '['spark-submit', '--packages', 'org.postgresql:postgresql:42.6.0', '/opt/airflow/dags/daily_etl.py', '2019-10-01']' returned non-zero exit status 1.
-[2026-09-21T22:10:28.716+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=ecommerce_data, task_id=extract, run_id=scheduled__2019-10-01T00:00:00+00:00, execution_date=20191001T000000, start_date=20260921T221019, end_date=20260921T221028
-[2026-09-21T22:10:28.725+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 209 for task extract (Command '['spark-submit', '--packages', 'org.postgresql:postgresql:42.6.0', '/opt/airflow/dags/daily_etl.py', '2019-10-01']' returned non-zero exit status 1.; 22896)
-[2026-09-21T22:10:28.751+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
-[2026-09-21T22:10:28.765+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
-[2026-09-21T22:10:28.766+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
-[2026-09-21T22:19:38.014+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
-[2026-09-21T22:19:38.033+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [queued]>
-[2026-09-21T22:19:38.038+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [queued]>
-[2026-09-21T22:19:38.038+0000] {taskinstance.py:2306} INFO - Starting attempt 4 of 4
-[2026-09-21T22:19:38.047+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract> on 2019-10-01 00:00:00+00:00
-[2026-09-21T22:19:38.053+0000] {standard_task_runner.py:63} INFO - Started process 23772 to run task
-[2026-09-21T22:19:38.055+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ecommerce_data', 'extract', 'scheduled__2019-10-01T00:00:00+00:00', '--job-id', '216', '--raw', '--subdir', 'DAGS_FOLDER/etl.py', '--cfg-path', '/tmp/tmpt7kwsnh8']
-[2026-09-21T22:19:38.056+0000] {standard_task_runner.py:91} INFO - Job 216: Subtask extract
-[2026-09-21T22:19:38.084+0000] {task_command.py:426} INFO - Running <TaskInstance: ecommerce_data.extract scheduled__2019-10-01T00:00:00+00:00 [running]> on host e6c3ac7e1715
-[2026-09-21T22:19:38.124+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='ecommerce_data' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2019-10-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='4' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2019-10-01T00:00:00+00:00'
-[2026-09-21T22:19:38.124+0000] {taskinstance.py:430} INFO - ::endgroup::
-[2026-09-21T22:19:38.128+0000] {base.py:84} INFO - Using connection ID 'postgres_conn_id' for task execution.
-[2026-09-21T22:19:44.983+0000] {etl.py:68} ERROR - === СПРАВЖНЯ ПОМИЛКА ВІД SPARK ===
-[2026-09-21T22:19:44.984+0000] {etl.py:69} ERROR - /home/airflow/.local/lib/python3.11/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
-Ivy Default Cache set to: /home/airflow/.ivy2/cache
-The jars for the packages stored in: /home/airflow/.ivy2/jars
-org.postgresql#postgresql added as a dependency
-:: resolving dependencies :: org.apache.spark#spark-submit-parent-7e11fff2-b060-47cc-9f53-4f07709e5986;1.0
-	confs: [default]
-	found org.postgresql#postgresql;42.6.0 in central
-	found org.checkerframework#checker-qual;3.31.0 in central
-:: resolution report :: resolve 123ms :: artifacts dl 7ms
-	:: modules in use:
-	org.checkerframework#checker-qual;3.31.0 from central in [default]
-	org.postgresql#postgresql;42.6.0 from central in [default]
-	---------------------------------------------------------------------
-	|                  |            modules            ||   artifacts   |
-	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
-	---------------------------------------------------------------------
-	|      default     |   2   |   0   |   0   |   0   ||   2   |   0   |
-	---------------------------------------------------------------------
-:: retrieving :: org.apache.spark#spark-submit-parent-7e11fff2-b060-47cc-9f53-4f07709e5986
-	confs: [default]
-	0 artifacts copied, 2 already retrieved (0kB/5ms)
-26/09/21 22:19:39 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-26/09/21 22:19:40 INFO SparkContext: Running Spark version 3.5.1
-26/09/21 22:19:40 INFO SparkContext: OS info Linux, 7.0.0-31-generic, amd64
-26/09/21 22:19:40 INFO SparkContext: Java version 17.0.20.1
-26/09/21 22:19:40 INFO ResourceUtils: ==============================================================
-26/09/21 22:19:40 INFO ResourceUtils: No custom resources configured for spark.driver.
-26/09/21 22:19:40 INFO ResourceUtils: ==============================================================
-26/09/21 22:19:40 INFO SparkContext: Submitted application: Daily_ecommerce
-26/09/21 22:19:40 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
-26/09/21 22:19:40 INFO ResourceProfile: Limiting resource is cpu
-26/09/21 22:19:40 INFO ResourceProfileManager: Added ResourceProfile id: 0
-26/09/21 22:19:40 INFO SecurityManager: Changing view acls to: airflow
-26/09/21 22:19:40 INFO SecurityManager: Changing modify acls to: airflow
-26/09/21 22:19:40 INFO SecurityManager: Changing view acls groups to: 
-26/09/21 22:19:40 INFO SecurityManager: Changing modify acls groups to: 
-26/09/21 22:19:40 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: airflow; groups with view permissions: EMPTY; users with modify permissions: airflow; groups with modify permissions: EMPTY
-26/09/21 22:19:41 INFO Utils: Successfully started service 'sparkDriver' on port 37107.
-26/09/21 22:19:41 INFO SparkEnv: Registering MapOutputTracker
-26/09/21 22:19:41 INFO SparkEnv: Registering BlockManagerMaster
-26/09/21 22:19:41 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
-26/09/21 22:19:41 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
-26/09/21 22:19:41 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
-26/09/21 22:19:41 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-f00bd537-0078-415e-bdcd-ba33ab847586
-26/09/21 22:19:41 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
-26/09/21 22:19:41 INFO SparkEnv: Registering OutputCommitCoordinator
-26/09/21 22:19:41 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
-26/09/21 22:19:41 INFO Utils: Successfully started service 'SparkUI' on port 4040.
-26/09/21 22:19:41 INFO SparkContext: Added JAR file:///home/airflow/.ivy2/jars/org.postgresql_postgresql-42.6.0.jar at spark://e6c3ac7e1715:37107/jars/org.postgresql_postgresql-42.6.0.jar with timestamp 1790029180792
-26/09/21 22:19:41 INFO SparkContext: Added JAR file:///home/airflow/.ivy2/jars/org.checkerframework_checker-qual-3.31.0.jar at spark://e6c3ac7e1715:37107/jars/org.checkerframework_checker-qual-3.31.0.jar with timestamp 1790029180792
-26/09/21 22:19:41 INFO SparkContext: Added file file:///home/airflow/.ivy2/jars/org.postgresql_postgresql-42.6.0.jar at file:///home/airflow/.ivy2/jars/org.postgresql_postgresql-42.6.0.jar with timestamp 1790029180792
-26/09/21 22:19:41 INFO Utils: Copying /home/airflow/.ivy2/jars/org.postgresql_postgresql-42.6.0.jar to /tmp/spark-bca256ab-65f6-43be-96c7-e69386e37a9e/userFiles-b311a27f-61df-4ca9-a179-3dfc8a8eff45/org.postgresql_postgresql-42.6.0.jar
-26/09/21 22:19:41 INFO SparkContext: Added file file:///home/airflow/.ivy2/jars/org.checkerframework_checker-qual-3.31.0.jar at file:///home/airflow/.ivy2/jars/org.checkerframework_checker-qual-3.31.0.jar with timestamp 1790029180792
-26/09/21 22:19:41 INFO Utils: Copying /home/airflow/.ivy2/jars/org.checkerframework_checker-qual-3.31.0.jar to /tmp/spark-bca256ab-65f6-43be-96c7-e69386e37a9e/userFiles-b311a27f-61df-4ca9-a179-3dfc8a8eff45/org.checkerframework_checker-qual-3.31.0.jar
-26/09/21 22:19:41 INFO Executor: Starting executor ID driver on host e6c3ac7e1715
-26/09/21 22:19:41 INFO Executor: OS info Linux, 7.0.0-31-generic, amd64
-26/09/21 22:19:41 INFO Executor: Java version 17.0.20.1
-26/09/21 22:19:41 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
-26/09/21 22:19:41 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@4e870ecc for default.
-26/09/21 22:19:41 INFO Executor: Fetching file:///home/airflow/.ivy2/jars/org.checkerframework_checker-qual-3.31.0.jar with timestamp 1790029180792
-26/09/21 22:19:41 INFO Utils: /home/airflow/.ivy2/jars/org.checkerframework_checker-qual-3.31.0.jar has been previously copied to /tmp/spark-bca256ab-65f6-43be-96c7-e69386e37a9e/userFiles-b311a27f-61df-4ca9-a179-3dfc8a8eff45/org.checkerframework_checker-qual-3.31.0.jar
-26/09/21 22:19:41 INFO Executor: Fetching file:///home/airflow/.ivy2/jars/org.postgresql_postgresql-42.6.0.jar with timestamp 1790029180792
-26/09/21 22:19:41 INFO Utils: /home/airflow/.ivy2/jars/org.postgresql_postgresql-42.6.0.jar has been previously copied to /tmp/spark-bca256ab-65f6-43be-96c7-e69386e37a9e/userFiles-b311a27f-61df-4ca9-a179-3dfc8a8eff45/org.postgresql_postgresql-42.6.0.jar
-26/09/21 22:19:41 INFO Executor: Fetching spark://e6c3ac7e1715:37107/jars/org.postgresql_postgresql-42.6.0.jar with timestamp 1790029180792
-26/09/21 22:19:41 INFO TransportClientFactory: Successfully created connection to e6c3ac7e1715/172.21.0.3:37107 after 20 ms (0 ms spent in bootstraps)
-26/09/21 22:19:41 INFO Utils: Fetching spark://e6c3ac7e1715:37107/jars/org.postgresql_postgresql-42.6.0.jar to /tmp/spark-bca256ab-65f6-43be-96c7-e69386e37a9e/userFiles-b311a27f-61df-4ca9-a179-3dfc8a8eff45/fetchFileTemp14413276390304438414.tmp
-26/09/21 22:19:41 INFO Utils: /tmp/spark-bca256ab-65f6-43be-96c7-e69386e37a9e/userFiles-b311a27f-61df-4ca9-a179-3dfc8a8eff45/fetchFileTemp14413276390304438414.tmp has been previously copied to /tmp/spark-bca256ab-65f6-43be-96c7-e69386e37a9e/userFiles-b311a27f-61df-4ca9-a179-3dfc8a8eff45/org.postgresql_postgresql-42.6.0.jar
-26/09/21 22:19:41 INFO Executor: Adding file:/tmp/spark-bca256ab-65f6-43be-96c7-e69386e37a9e/userFiles-b311a27f-61df-4ca9-a179-3dfc8a8eff45/org.postgresql_postgresql-42.6.0.jar to class loader default
-26/09/21 22:19:41 INFO Executor: Fetching spark://e6c3ac7e1715:37107/jars/org.checkerframework_checker-qual-3.31.0.jar with timestamp 1790029180792
-26/09/21 22:19:41 INFO Utils: Fetching spark://e6c3ac7e1715:37107/jars/org.checkerframework_checker-qual-3.31.0.jar to /tmp/spark-bca256ab-65f6-43be-96c7-e69386e37a9e/userFiles-b311a27f-61df-4ca9-a179-3dfc8a8eff45/fetchFileTemp4166428910793891498.tmp
-26/09/21 22:19:41 INFO Utils: /tmp/spark-bca256ab-65f6-43be-96c7-e69386e37a9e/userFiles-b311a27f-61df-4ca9-a179-3dfc8a8eff45/fetchFileTemp4166428910793891498.tmp has been previously copied to /tmp/spark-bca256ab-65f6-43be-96c7-e69386e37a9e/userFiles-b311a27f-61df-4ca9-a179-3dfc8a8eff45/org.checkerframework_checker-qual-3.31.0.jar
-26/09/21 22:19:41 INFO Executor: Adding file:/tmp/spark-bca256ab-65f6-43be-96c7-e69386e37a9e/userFiles-b311a27f-61df-4ca9-a179-3dfc8a8eff45/org.checkerframework_checker-qual-3.31.0.jar to class loader default
-26/09/21 22:19:41 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 36631.
-26/09/21 22:19:41 INFO NettyBlockTransferService: Server created on e6c3ac7e1715:36631
-26/09/21 22:19:41 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
-26/09/21 22:19:41 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, e6c3ac7e1715, 36631, None)
-26/09/21 22:19:41 INFO BlockManagerMasterEndpoint: Registering block manager e6c3ac7e1715:36631 with 434.4 MiB RAM, BlockManagerId(driver, e6c3ac7e1715, 36631, None)
-26/09/21 22:19:41 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, e6c3ac7e1715, 36631, None)
-26/09/21 22:19:41 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, e6c3ac7e1715, 36631, None)
-26/09/21 22:19:41 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
-26/09/21 22:19:41 INFO SharedState: Warehouse path is 'file:/opt/airflow/spark-warehouse'.
-26/09/21 22:19:42 INFO InMemoryFileIndex: It took 35 ms to list leaf files for 1 paths.
-26/09/21 22:19:42 INFO SparkContext: Starting job: parquet at NativeMethodAccessorImpl.java:0
-26/09/21 22:19:42 INFO DAGScheduler: Got job 0 (parquet at NativeMethodAccessorImpl.java:0) with 1 output partitions
-26/09/21 22:19:42 INFO DAGScheduler: Final stage: ResultStage 0 (parquet at NativeMethodAccessorImpl.java:0)
-26/09/21 22:19:42 INFO DAGScheduler: Parents of final stage: List()
-26/09/21 22:19:42 INFO DAGScheduler: Missing parents: List()
-26/09/21 22:19:42 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[1] at parquet at NativeMethodAccessorImpl.java:0), which has no missing parents
-26/09/21 22:19:43 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 104.5 KiB, free 434.3 MiB)
-26/09/21 22:19:43 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 37.6 KiB, free 434.3 MiB)
-26/09/21 22:19:43 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on e6c3ac7e1715:36631 (size: 37.6 KiB, free: 434.4 MiB)
-26/09/21 22:19:43 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1585
-26/09/21 22:19:43 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[1] at parquet at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
-26/09/21 22:19:43 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks resource profile 0
-26/09/21 22:19:43 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (e6c3ac7e1715, executor driver, partition 0, PROCESS_LOCAL, 8303 bytes) 
-26/09/21 22:19:43 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
-26/09/21 22:19:43 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 2034 bytes result sent to driver
-26/09/21 22:19:43 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 324 ms on e6c3ac7e1715 (executor driver) (1/1)
-26/09/21 22:19:43 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
-26/09/21 22:19:43 INFO DAGScheduler: ResultStage 0 (parquet at NativeMethodAccessorImpl.java:0) finished in 0.459 s
-26/09/21 22:19:43 INFO DAGScheduler: Job 0 is finished. Cancelling potential speculative or zombie tasks for this job
-26/09/21 22:19:43 INFO TaskSchedulerImpl: Killing all running tasks in stage 0: Stage finished
-26/09/21 22:19:43 INFO DAGScheduler: Job 0 finished: parquet at NativeMethodAccessorImpl.java:0, took 0.496665 s
-26/09/21 22:19:43 INFO BlockManagerInfo: Removed broadcast_0_piece0 on e6c3ac7e1715:36631 in memory (size: 37.6 KiB, free: 434.4 MiB)
-26/09/21 22:19:44 INFO SparkContext: Invoking stop() from shutdown hook
-26/09/21 22:19:44 INFO SparkContext: SparkContext is stopping with exitCode 0.
-26/09/21 22:19:44 INFO SparkUI: Stopped Spark web UI at http://e6c3ac7e1715:4040
-26/09/21 22:19:44 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
-26/09/21 22:19:44 INFO MemoryStore: MemoryStore cleared
-26/09/21 22:19:44 INFO BlockManager: BlockManager stopped
-26/09/21 22:19:44 INFO BlockManagerMaster: BlockManagerMaster stopped
-26/09/21 22:19:44 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
-26/09/21 22:19:44 INFO SparkContext: Successfully stopped SparkContext
-26/09/21 22:19:44 INFO ShutdownHookManager: Shutdown hook called
-26/09/21 22:19:44 INFO ShutdownHookManager: Deleting directory /tmp/spark-bca256ab-65f6-43be-96c7-e69386e37a9e/pyspark-16784938-c6dc-4a2b-9670-69048ce57858
-26/09/21 22:19:44 INFO ShutdownHookManager: Deleting directory /tmp/spark-bca256ab-65f6-43be-96c7-e69386e37a9e
-26/09/21 22:19:44 INFO ShutdownHookManager: Deleting directory /tmp/spark-678dbcd2-b21b-4e2a-a968-3da1b76c4d01
-
-[2026-09-21T22:19:44.984+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
-[2026-09-21T22:19:44.985+0000] {taskinstance.py:2905} ERROR - Task failed with exception
-Traceback (most recent call last):
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
-    result = _execute_callable(context=context, **execute_callable_kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
-    return execute_callable(context=context, **execute_callable_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
-    return func(self, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/decorators/base.py", line 265, in execute
-    return_value = super().execute(context)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
-    return func(self, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 235, in execute
-    return_value = self.execute_callable()
-                   ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 252, in execute_callable
-    return self.python_callable(*self.op_args, **self.op_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/airflow/dags/etl.py", line 70, in extract
-    raise e
-  File "/opt/airflow/dags/etl.py", line 59, in extract
-    script_run = subprocess.run([
-                 ^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/subprocess.py", line 571, in run
-    raise CalledProcessError(retcode, process.args,
-subprocess.CalledProcessError: Command '['spark-submit', '--packages', 'org.postgresql:postgresql:42.6.0', '/opt/airflow/dags/daily_etl.py', '2019-10-01']' returned non-zero exit status 1.
-[2026-09-21T22:19:44.992+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=ecommerce_data, task_id=extract, run_id=scheduled__2019-10-01T00:00:00+00:00, execution_date=20191001T000000, start_date=20260921T221938, end_date=20260921T221944
-[2026-09-21T22:19:45.004+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 216 for task extract (Command '['spark-submit', '--packages', 'org.postgresql:postgresql:42.6.0', '/opt/airflow/dags/daily_etl.py', '2019-10-01']' returned non-zero exit status 1.; 23772)
-[2026-09-21T22:19:45.033+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
-[2026-09-21T22:19:45.046+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
-[2026-09-21T22:19:45.047+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-09-21, 22:10:28 UTC] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=ecommerce_data, task_id=extract, run_id=scheduled__2019-10-01T00:00:00+00:00, execution_date=20191001T000000, start_date=20260921T221019, end_date=20260921T221028
+[2026-09-21, 22:10:28 UTC] {standard_task_runner.py:110} ERROR - Failed to execute job 209 for task extract (Command '['spark-submit', '--packages', 'org.postgresql:postgresql:42.6.0', '/opt/airflow/dags/daily_etl.py', '2019-10-01']' returned non-zero exit status 1.; 22896)
+[2026-09-21, 22:10:28 UTC] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-09-21, 22:10:28 UTC] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-09-21, 22:10:28 UTC] {local_task_job_runner.py:222} ▲▲▲ Log group end
