@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
     start_date=pendulum.datetime(2019, 10, 1, tz="UTC"),
     end_date=pendulum.datetime(2019, 11, 30, tz="UTC"),
     catchup=True,
-    max_active_runs=1,
+    max_active_runs=3,
     tags=["ecommerce", "2019"],
 )
 def ecommerce_pipeline():
@@ -38,7 +38,18 @@ def ecommerce_pipeline():
     clear_old_data = PostgresOperator(
         task_id="clear_old_data",
         postgres_conn_id="postgres_conn_id",
-        sql="DELETE FROM daily_sales WHERE event_date = '{{ ds }}';"
+        sql="""
+        CREATE TABLE IF NOT EXISTS daily_user_metrics (
+            user_id VARCHAR,
+            country VARCHAR,
+            total_views BIGINT,
+            total_spend FLOAT,
+            total_carts BIGINT,
+            total_purchases BIGINT,
+            event_date DATE
+        );
+        DELETE FROM daily_user_metrics WHERE event_date = '{{ ds }}';
+    """
     )
     @task(
         retries=3,
@@ -51,15 +62,21 @@ def ecommerce_pipeline():
         conn_info = hook.get_connection(hook.postgres_conn_id)
         env = os.environ.copy()
         env['DB_HOST'] = conn_info.host
-        env['DB_PORT'] = str(conn_info.port)
+        env['DB_PORT'] = str(conn_info.port) if conn_info.port else "5432"
         env['DB_NAME'] = conn_info.schema
         env['DB_USER'] = conn_info.login
         env['DB_PASSWORD'] = conn_info.password
-        script_run = subprocess.run([
-            "spark-submit", 
-            "--packages", "org.postgresql:postgresql:42.6.0", 
-            "/opt/airflow/dags/daily_etl.py", ds
+        try:
+            script_run = subprocess.run([
+                "spark-submit", 
+                "--packages", "org.postgresql:postgresql:42.6.0", 
+                "/opt/airflow/dags/daily_etl.py", ds
             ], env=env, check=True, capture_output=True, text=True)
+            logger.info(script_run.stdout)
+        except subprocess.CalledProcessError as e:
+            logger.error(f"=== STDOUT ===\n{e.stdout}")
+            logger.error(f"=== STDERR ===\n{e.stderr}")
+            raise e
     extract_task = extract()
     check_db_alive >> wait_for_reply >> clear_old_data >> extract_task
 ecommerce_pipeline()

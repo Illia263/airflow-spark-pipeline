@@ -9,7 +9,7 @@ if __name__ == "__main__":
     spark = SparkSession.builder\
     .appName("Daily_ecommerce")\
     .config("spark.jars.packages", "org.postgresql:postgresql:42.6.0")\
-    .config("spark.driver.memory", "8g")\
+    .config("spark.driver.memory", "2g")\
     .getOrCreate()
     try:
         date_obj = datetime.strptime(sys.argv[1], "%Y-%m-%d")
@@ -61,7 +61,7 @@ if __name__ == "__main__":
     final_df.write \
     .format("jdbc")\
     .option("url", db_url)\
-    .option("dbtable", "daily_sales")\
+    .option("dbtable", "daily_user_metrics")\
     .option("user", db_user)\
     .option("password", db_password)\
     .option("driver", "org.postgresql.Driver")\

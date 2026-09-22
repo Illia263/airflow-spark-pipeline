@@ -24,6 +24,7 @@ services:
       - DWH_USER=ecommerce_user
       - DWH_PASSWORD=ecommerce_password
       - DWH_DB=ecommerce_db
+      - AIRFLOW_CONN_POSTGRES_CONN_ID=postgresql://ecommerce_user:ecommerce_password@ecommerce_dwh:5432/ecommerce_db
     ports:
       - "8080:8080"
     volumes:

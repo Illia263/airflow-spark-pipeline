@@ -414,3 +414,63 @@ subprocess.CalledProcessError: Command '['spark-submit', '--packages', 'org.post
 [2026-09-21T22:23:37.540+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
 [2026-09-21T22:23:37.553+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
 [2026-09-21T22:23:37.554+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-09-22T17:38:26.712+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-09-22T17:38:26.730+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-04T00:00:00+00:00 [queued]>
+[2026-09-22T17:38:26.736+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-04T00:00:00+00:00 [queued]>
+[2026-09-22T17:38:26.736+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 4
+[2026-09-22T17:38:26.746+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract> on 2019-10-04 00:00:00+00:00
+[2026-09-22T17:38:26.752+0000] {standard_task_runner.py:63} INFO - Started process 4087 to run task
+[2026-09-22T17:38:26.754+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ecommerce_data', 'extract', 'scheduled__2019-10-04T00:00:00+00:00', '--job-id', '40', '--raw', '--subdir', 'DAGS_FOLDER/etl.py', '--cfg-path', '/tmp/tmpnu_0r9ry']
+[2026-09-22T17:38:26.756+0000] {standard_task_runner.py:91} INFO - Job 40: Subtask extract
+[2026-09-22T17:38:26.783+0000] {task_command.py:426} INFO - Running <TaskInstance: ecommerce_data.extract scheduled__2019-10-04T00:00:00+00:00 [running]> on host 398971961f28
+[2026-09-22T17:38:26.839+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='ecommerce_data' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2019-10-04T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2019-10-04T00:00:00+00:00'
+[2026-09-22T17:38:26.839+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-09-22T17:38:26.843+0000] {base.py:84} INFO - Using connection ID 'postgres_conn_id' for task execution.
+[2026-09-22T17:38:43.308+0000] {etl.py:64} INFO - :: loading settings :: url = jar:file:/home/airflow/.local/lib/python3.11/site-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+
+[2026-09-22T17:38:43.308+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-09-22T17:38:43.308+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-09-22T17:38:43.312+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ecommerce_data, task_id=extract, run_id=scheduled__2019-10-04T00:00:00+00:00, execution_date=20191004T000000, start_date=20260922T173826, end_date=20260922T173843
+[2026-09-22T17:38:43.342+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-09-22T17:38:43.356+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-09-22T17:38:43.356+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-09-22T22:19:24.954+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-09-22T22:19:24.972+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-04T00:00:00+00:00 [queued]>
+[2026-09-22T22:19:24.977+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-04T00:00:00+00:00 [queued]>
+[2026-09-22T22:19:24.978+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 4
+[2026-09-22T22:19:24.991+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract> on 2019-10-04 00:00:00+00:00
+[2026-09-22T22:19:24.996+0000] {standard_task_runner.py:63} INFO - Started process 8673 to run task
+[2026-09-22T22:19:24.999+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ecommerce_data', 'extract', 'scheduled__2019-10-04T00:00:00+00:00', '--job-id', '81', '--raw', '--subdir', 'DAGS_FOLDER/etl.py', '--cfg-path', '/tmp/tmpjsszjuaw']
+[2026-09-22T22:19:25.000+0000] {standard_task_runner.py:91} INFO - Job 81: Subtask extract
+[2026-09-22T22:19:25.032+0000] {task_command.py:426} INFO - Running <TaskInstance: ecommerce_data.extract scheduled__2019-10-04T00:00:00+00:00 [running]> on host 398971961f28
+[2026-09-22T22:19:25.081+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='ecommerce_data' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2019-10-04T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2019-10-04T00:00:00+00:00'
+[2026-09-22T22:19:25.082+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-09-22T22:19:25.086+0000] {base.py:84} INFO - Using connection ID 'postgres_conn_id' for task execution.
+[2026-09-22T22:19:41.545+0000] {etl.py:75} INFO - :: loading settings :: url = jar:file:/home/airflow/.local/lib/python3.11/site-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+
+[2026-09-22T22:19:41.545+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-09-22T22:19:41.546+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-09-22T22:19:41.550+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ecommerce_data, task_id=extract, run_id=scheduled__2019-10-04T00:00:00+00:00, execution_date=20191004T000000, start_date=20260922T221924, end_date=20260922T221941
+[2026-09-22T22:19:41.578+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-09-22T22:19:41.592+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-09-22T22:19:41.593+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-09-22T22:22:44.056+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-09-22T22:22:44.083+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-04T00:00:00+00:00 [queued]>
+[2026-09-22T22:22:44.092+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_data.extract scheduled__2019-10-04T00:00:00+00:00 [queued]>
+[2026-09-22T22:22:44.092+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 4
+[2026-09-22T22:22:44.106+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract> on 2019-10-04 00:00:00+00:00
+[2026-09-22T22:22:44.112+0000] {standard_task_runner.py:63} INFO - Started process 10540 to run task
+[2026-09-22T22:22:44.115+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ecommerce_data', 'extract', 'scheduled__2019-10-04T00:00:00+00:00', '--job-id', '105', '--raw', '--subdir', 'DAGS_FOLDER/etl.py', '--cfg-path', '/tmp/tmp2lxaic1o']
+[2026-09-22T22:22:44.117+0000] {standard_task_runner.py:91} INFO - Job 105: Subtask extract
+[2026-09-22T22:22:44.159+0000] {task_command.py:426} INFO - Running <TaskInstance: ecommerce_data.extract scheduled__2019-10-04T00:00:00+00:00 [running]> on host 398971961f28
+[2026-09-22T22:22:44.211+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='ecommerce_data' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2019-10-04T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2019-10-04T00:00:00+00:00'
+[2026-09-22T22:22:44.211+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-09-22T22:22:44.215+0000] {base.py:84} INFO - Using connection ID 'postgres_conn_id' for task execution.
+[2026-09-22T22:23:01.793+0000] {etl.py:75} INFO - :: loading settings :: url = jar:file:/home/airflow/.local/lib/python3.11/site-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+
+[2026-09-22T22:23:01.793+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-09-22T22:23:01.794+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-09-22T22:23:01.797+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ecommerce_data, task_id=extract, run_id=scheduled__2019-10-04T00:00:00+00:00, execution_date=20191004T000000, start_date=20260922T222244, end_date=20260922T222301
+[2026-09-22T22:23:01.826+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-09-22T22:23:01.833+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-09-22T22:23:01.834+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
